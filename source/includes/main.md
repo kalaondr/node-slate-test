@@ -47,10 +47,7 @@ A flow with adding stops would look like this:
 > To search for a trip from Prague to Vienna for three passengers, use this call:
 
 ```python
-import kittn
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
 ```
 
 ```bash
