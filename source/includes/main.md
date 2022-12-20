@@ -10,12 +10,6 @@ This example API documentation page was created with [Slate](https://github.com/
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
 ```python
 import kittn
 
@@ -49,13 +43,6 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 # Kittens
 
 ## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
 
 ```python
 import kittn
@@ -115,13 +102,6 @@ Remember — a happy kitten is an authenticated kitten!
 </aside>
 
 ## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
 
 ```python
 import kittn
