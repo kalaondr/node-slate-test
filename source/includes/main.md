@@ -104,7 +104,9 @@ curl "https://api.mydaytrip.com/partners/v3/trip/search?originLongitude=14.2559&
 					"ageFrom": 0,
 					"ageTo": 1,
 					"weightInPoundsFrom": 0,
-					"weightInPoundsTo": 26
+					"weightInPoundsTo": 26,
+               "weightInKilosFrom": 0,
+               "weightInKilosTo": 10
 				},
 				{
 					"childSeatType": "ForwardFacing",
@@ -112,7 +114,9 @@ curl "https://api.mydaytrip.com/partners/v3/trip/search?originLongitude=14.2559&
 					"ageFrom": 1,
 					"ageTo": 4,
 					"weightInPoundsFrom": 18,
-					"weightInPoundsTo": 36
+					"weightInPoundsTo": 36,
+               "weightInKilosFrom": 8,
+               "weightInKilosTo": 16
 				},
 				{
 					"childSeatType": "BoosterSeat",
@@ -120,7 +124,9 @@ curl "https://api.mydaytrip.com/partners/v3/trip/search?originLongitude=14.2559&
 					"ageFrom": 4,
 					"ageTo": 6,
 					"weightInPoundsFrom": 30,
-					"weightInPoundsTo": 50
+					"weightInPoundsTo": 50,
+               "weightInKilosFrom": 14,
+               "weightInKilosTo": 23
 				},
 				{
 					"childSeatType": "Booster",
@@ -128,7 +134,9 @@ curl "https://api.mydaytrip.com/partners/v3/trip/search?originLongitude=14.2559&
 					"ageFrom": 6,
 					"ageTo": 12,
 					"weightInPoundsFrom": 44,
-					"weightInPoundsTo": 72
+					"weightInPoundsTo": 72,
+               "weightInKilosFrom": 20,
+               "weightInKilosTo": 33
 				}
 			],
 			"possibleStops": [
@@ -198,7 +206,9 @@ curl "https://api.mydaytrip.com/partners/v3/trip/search?originLongitude=14.2559&
 					"ageFrom": 0,
 					"ageTo": 1,
 					"weightInPoundsFrom": 0,
-					"weightInPoundsTo": 26
+					"weightInPoundsTo": 26,
+               "weightInKilosFrom": 0,
+               "weightInKilosTo": 10
 				},
 				{
 					"childSeatType": "ForwardFacing",
@@ -206,7 +216,9 @@ curl "https://api.mydaytrip.com/partners/v3/trip/search?originLongitude=14.2559&
 					"ageFrom": 1,
 					"ageTo": 4,
 					"weightInPoundsFrom": 18,
-					"weightInPoundsTo": 36
+					"weightInPoundsTo": 36,
+               "weightInKilosFrom": 8,
+               "weightInKilosTo": 16
 				},
 				{
 					"childSeatType": "BoosterSeat",
@@ -214,7 +226,9 @@ curl "https://api.mydaytrip.com/partners/v3/trip/search?originLongitude=14.2559&
 					"ageFrom": 4,
 					"ageTo": 6,
 					"weightInPoundsFrom": 30,
-					"weightInPoundsTo": 50
+					"weightInPoundsTo": 50,
+               "weightInKilosFrom": 14,
+               "weightInKilosTo": 23
 				},
 				{
 					"childSeatType": "Booster",
@@ -222,7 +236,9 @@ curl "https://api.mydaytrip.com/partners/v3/trip/search?originLongitude=14.2559&
 					"ageFrom": 6,
 					"ageTo": 12,
 					"weightInPoundsFrom": 44,
-					"weightInPoundsTo": 72
+					"weightInPoundsTo": 72,
+               "weightInKilosFrom": 20,
+               "weightInKilosTo": 33
 				}
 			],
 			"possibleStops": [
