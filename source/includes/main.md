@@ -146,7 +146,7 @@ curl "https://api.mydaytrip.com/partners/v3/trip/search?originLongitude=14.2559&
 					"perex":"This UNESCO-listed chateau and sprawling park was the Lichtenstein's holiday home - exactly the kind of extravagance you'd expect from a dynasty with their own country. ",
 					"description":"The Liechtensteins really came into the money with the fortunes seized from Czech noblemen after their victory at the Battle of White Mountain in 1620, and Lednice was one of the presents they bought themselves. In the mid-19th century the baroque manor was given a complete makeover in the 'Windsor Gothic' style, leaving it as we see it today: a shameless flaunting of fabulous wealth, a slap in the face to anyone foolish enough to think that the French Revolution had ended high-living in Europe. The surrounding English landscape park, the largest in the country, is an incomparable swath of green, sprinkled with Romantic follies. There's also a monumental greenhouse open all year round, overflowing with exotic growths gathered by an army of botanists across the Americas. The greenhouse's exoticism is echoed by the charming minaret, constructed at the turn of the 18th century, bringing a whiff of Morocco to Moravia.\nFor more info: www.zamek-lednice.com",					  
 					"durationInMinutes":60,
-               "order": 1,
+					"order": 1,
 					"timezone":"Europe/Prague",
 					"country":{
 						"englishName":"Czech Republic"
@@ -161,7 +161,7 @@ curl "https://api.mydaytrip.com/partners/v3/trip/search?originLongitude=14.2559&
                     "perex":"A town with a history as deep and flavourful as its wine, Mikulov provides a perfect combination of relaxation and exploration.",
                     "description":"Often favoured by visitors with a more active approach to life, Mikulov has much to offer. Surrounded by idyllic countryside, crisscrossed by bicycle paths and marked hiking trails, and the nearby Nové Mlýny lakes, there is something for everyone to enjoy. After all that fresh air, a glass of wine will be more than welcome, and fortunately, Mikulov is the centre for Czech wine making. Due to a high concentration of limestone in the local soil, wine from this region has a unique character and distinct taste. If you like your wine with a side-serving of history, Mikulov Castle dates from the 1730s, and the Dietrichstein Tomb is the final resting place of a Bohemian noble family. Mikulov is also significant for its strong Jewish history. In the early 1800s Mikulov's Jewish Quarter was the largest in Moravia with half the town's inhabitants being of Jewish faith.",
                     "durationInMinutes":60,
-                    "order": 2,
+					     "order": 2,
                     "timezone":"Europe/Prague",
                     "country":{
                       "englishName":"Czech Republic",
@@ -263,7 +263,7 @@ curl "https://api.mydaytrip.com/partners/v3/trip/search?originLongitude=14.2559&
                     "perex":"A town with a history as deep and flavourful as its wine, Mikulov provides a perfect combination of relaxation and exploration.",
                     "description":"Often favoured by visitors with a more active approach to life, Mikulov has much to offer. Surrounded by idyllic countryside, crisscrossed by bicycle paths and marked hiking trails, and the nearby Nové Mlýny lakes, there is something for everyone to enjoy. After all that fresh air, a glass of wine will be more than welcome, and fortunately, Mikulov is the centre for Czech wine making. Due to a high concentration of limestone in the local soil, wine from this region has a unique character and distinct taste. If you like your wine with a side-serving of history, Mikulov Castle dates from the 1730s, and the Dietrichstein Tomb is the final resting place of a Bohemian noble family. Mikulov is also significant for its strong Jewish history. In the early 1800s Mikulov's Jewish Quarter was the largest in Moravia with half the town's inhabitants being of Jewish faith.",
                     "durationInMinutes":60,
-                    "order": 2,
+					     "order": 2,
                     "timezone":"Europe/Prague",
                     "country":{
                       "englishName":"Czech Republic",
@@ -352,7 +352,7 @@ curl "https://api.mydaytrip.com/partners/v3/trip/search?originLongitude=14.2559&
 					"perex":"This UNESCO-listed chateau and sprawling park was the Lichtenstein's holiday home - exactly the kind of extravagance you'd expect from a dynasty with their own country. ",
 					"description":"The Liechtensteins really came into the money with the fortunes seized from Czech noblemen after their victory at the Battle of White Mountain in 1620, and Lednice was one of the presents they bought themselves. In the mid-19th century the baroque manor was given a complete makeover in the 'Windsor Gothic' style, leaving it as we see it today: a shameless flaunting of fabulous wealth, a slap in the face to anyone foolish enough to think that the French Revolution had ended high-living in Europe. The surrounding English landscape park, the largest in the country, is an incomparable swath of green, sprinkled with Romantic follies. There's also a monumental greenhouse open all year round, overflowing with exotic growths gathered by an army of botanists across the Americas. The greenhouse's exoticism is echoed by the charming minaret, constructed at the turn of the 18th century, bringing a whiff of Morocco to Moravia.\nFor more info: www.zamek-lednice.com",					  
 					"durationInMinutes":60,
-               "order": 1,
+					"order": 1,
 					"timezone":"Europe/Prague",
 					"country":{
 						"englishName":"Czech Republic"
@@ -372,11 +372,38 @@ This endpoint returns all trip options for given origin, destination, departure 
 
 ### Query Parameters
 
-Parameter            | Description
--------------------- | -----------
-originLatitude       | Origin latitude in degrees.
-originLongitude      | Origin longitued in degrees.
-destinationLatitude  | Destination latitude in degrees.
-originLongitude      | Destination longitued in degrees.
-departureTime        | Departure time as a UNIX timestamp in seconds.
-passengersCount      | Count of passengers to transport.
+Parameter           | Description
+------------------- | -----------
+originLatitude      | Origin latitude in degrees.
+originLongitude     | Origin longitued in degrees.
+destinationLatitude | Destination latitude in degrees.
+originLongitude     | Destination longitued in degrees.
+departureTime       | Departure time as a UNIX timestamp in seconds.
+passengersCount     | Count of passengers to transport.
+
+### Response body
+
+Property        | Type                         | Description
+--------------- | ---------------------------- | -----------
+searchId        | string                       | Unique id of your search query.
+passengersCount | integer                      | The count of passengers this search query was for.
+currency        | string                       | Currency used for all prices in this response.
+options         | list of TripOption           | List of options for this trip.
+
+#### TripOption
+
+Property                | Type                         | Description
+----------------------- | ---------------------------- | -----------
+id                      | string                       | Unique id of the trip option. Used to customize or book this option.
+type                    | string                       | Type of this option. "Private" or "Shared" (predefined shuttle trips).
+distanceKm              | number                       | Length of the trip.
+travelTimeMinutes       | number                       | Expected duration of the trip in minutes.
+pickUp                  | object - Location            | Details about the pick up point.
+dropOff                 | object - Location            | Details about the drop off point.
+pricing                 | object - Pricing             | Details about the pricing.
+vehicle                 | object - Vehicle             | Details about the vehicle.
+luggage                 | object - Luggage             | Details about the luggage.
+seatsAvailable          | integer                      | Number of available seats in the shared shuttle. Optional.
+availableChildSeatTypes | list of ChildSeatType        | List of available child seat types for this trip.
+possibleStops           | list of Stop                 | Stops that can be added to this trip option.
+includedStops           | list of Stop                 | Stops that are already included in this option.
