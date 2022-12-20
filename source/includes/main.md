@@ -390,7 +390,7 @@ passengersCount | integer                      | The count of passengers this se
 currency        | string                       | Currency used for all prices in this response.
 options         | list of TripOption           | List of options for this trip.
 
-#### TripOption
+### TripOption
 
 Property                | Type                         | Description
 ----------------------- | ---------------------------- | -----------
@@ -407,3 +407,19 @@ seatsAvailable          | integer                      | Number of available sea
 availableChildSeatTypes | list of ChildSeatType        | List of available child seat types for this trip.
 possibleStops           | list of Stop                 | Stops that can be added to this trip option.
 includedStops           | list of Stop                 | Stops that are already included in this option.
+
+### Location
+
+Property                | Type                         | Description
+----------------------- | ---------------------------- | -----------
+lat                     | number                       | Latitude in degrees.
+lon                     | number                       | Longitude in degrees.
+time                    | string                       | UTC timestamp of the departure time. Optional, for pick up only.
+description             | string                       | Description of the pick up or drop off. Optional.
+
+### Pricing
+
+Property                | Type                         | Description
+----------------------- | ---------------------------- | -----------
+totalPrice              | number                       | Total price of this option based on requested passenger count.
+pricePerPassenger       | number                       | Price per passenger. Optional, for shared options only.

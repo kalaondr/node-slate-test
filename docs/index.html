@@ -438,7 +438,7 @@
                   </tr>
                </tbody>
             </table>
-            <h4 id="tripoption">TripOption</h4>
+            <h3 id="tripoption">TripOption</h3>
             <table>
                <thead>
                   <tr>
@@ -512,6 +512,60 @@
                      <td>includedStops</td>
                      <td>list of Stop</td>
                      <td>Stops that are already included in this option.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="location">Location</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Property</th>
+                     <th>Type</th>
+                     <th>Description</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>lat</td>
+                     <td>number</td>
+                     <td>Latitude in degrees.</td>
+                  </tr>
+                  <tr>
+                     <td>lon</td>
+                     <td>number</td>
+                     <td>Longitude in degrees.</td>
+                  </tr>
+                  <tr>
+                     <td>time</td>
+                     <td>string</td>
+                     <td>UTC timestamp of the departure time. Optional, for pick up only.</td>
+                  </tr>
+                  <tr>
+                     <td>description</td>
+                     <td>string</td>
+                     <td>Description of the pick up or drop off. Optional.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="pricing">Pricing</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Property</th>
+                     <th>Type</th>
+                     <th>Description</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>totalPrice</td>
+                     <td>number</td>
+                     <td>Total price of this option based on requested passenger count.</td>
+                  </tr>
+                  <tr>
+                     <td>pricePerPassenger</td>
+                     <td>number</td>
+                     <td>Price per passenger. Optional, for shared options only.</td>
                   </tr>
                </tbody>
             </table>
