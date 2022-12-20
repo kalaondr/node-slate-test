@@ -6,11 +6,7 @@ The API can be used to search for trip options, customize a trip with stops, boo
 
 # Authentication
 
-> To authorize, use this code:
-
-```python
-
-```
+> To authorize your requests, add the `x-api-key` header like this:
 
 ```bash
 curl "https://api.mydaytrip.com/partners/v3/trip/search"
@@ -18,6 +14,10 @@ curl "https://api.mydaytrip.com/partners/v3/trip/search"
 ```
 
 ```javascript
+
+```
+
+```python
 
 ```
 
@@ -46,16 +46,16 @@ A flow with adding stops would look like this:
 
 > To search for a trip from Prague to Vienna for three passengers, use this call:
 
-```python
-
-```
-
 ```bash
 curl "https://api.mydaytrip.com/partners/v3/trip/search?originLongitude=14.2559&originLatitude=50.10&destinationLongitude=16.3738&destinationLatitude=48.2082&departureTime=1766227088&passengersCount=3"
   -H "x-api-key: your-api-key"
 ```
 
 ```javascript
+
+```
+
+```python
 
 ```
 
