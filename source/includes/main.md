@@ -388,7 +388,7 @@ Property        | Type                         | Description
 searchId        | string                       | Unique id of your search query.
 passengersCount | integer                      | The count of passengers this search query was for.
 currency        | string                       | Currency used for all prices in this response.
-options         | list of TripOption           | List of options for this trip.
+options         | list of `TripOption`         | List of options for this trip.
 
 ### TripOption
 
@@ -398,15 +398,15 @@ id                      | string                       | Unique id of the trip o
 type                    | string                       | Type of this option. "Private" or "Shared" (predefined shuttle trips).
 distanceKm              | number                       | Length of the trip.
 travelTimeMinutes       | number                       | Expected duration of the trip in minutes.
-pickUp                  | object - Location            | Details about the pick up point.
-dropOff                 | object - Location            | Details about the drop off point.
-pricing                 | object - Pricing             | Details about the pricing.
-vehicle                 | object - Vehicle             | Details about the vehicle.
-luggage                 | object - Luggage             | Details about the luggage.
+pickUp                  | object - `Location`          | Details about the pick up point.
+dropOff                 | object - `Location`          | Details about the drop off point.
+pricing                 | object - `Pricing`           | Details about the pricing.
+vehicle                 | object - `Vehicle`           | Details about the vehicle.
+luggage                 | object - `Luggage`           | Details about the luggage.
 seatsAvailable          | integer                      | Number of available seats in the shared shuttle. Optional.
-availableChildSeatTypes | list of ChildSeatType        | List of available child seat types for this trip.
-possibleStops           | list of Stop                 | Stops that can be added to this trip option.
-includedStops           | list of Stop                 | Stops that are already included in this option.
+availableChildSeatTypes | list of `ChildSeatType`      | List of available child seat types for this trip.
+possibleStops           | list of `Stop`               | Stops that can be added to this trip option.
+includedStops           | list of `Stop`               | Stops that are already included in this option.
 
 ### Location
 
@@ -441,3 +441,38 @@ maxTotalCarryons        | integer                      | Maximum amount of carry
 maxTotalSuitcases       | integer                      | Maximum amount of suitcases that passengers can bring on this trip.
 maxCarryonsPerPerson    | integer                      | Maximum amount of carry-on luggage that one passenger can bring on this trip. Optional, for shared trips only.
 maxSuitcasesPerPerson   | integer                      | Maximum amount of suitcases that one passenger can bring on this trip. Optional, for shared trips only.
+
+### ChildSeatType
+
+Property                | Type                         | Description
+----------------------- | ---------------------------- | -----------
+childSeatType           | string                       | Type of the child seat. "RearFacing", "ForwardFacing", "BoosterSeat" or "Booster"
+description             | string                       | Description of the child seat type.
+ageFrom                 | integer                      | Minimum age in years of a child that this seat type is suitable for.
+ageTo                   | integer                      | Maximum age in years of a child that this seat type is suitable for.
+weightInPoundsFrom      | integer                      | Minimum weight in pounds of a child that this seat type is suitable for.
+weightInPoundsTo        | integer                      | Maximum weight in pounds of a child that this seat type is suitable for.
+weightInKilosFrom       | integer                      | Minimum weight in kilograms of a child that this seat type is suitable for.
+weightInKilosTo         | integer                      | Maximum weight in kilograms of a child that this seat type is suitable for.
+
+### Stop
+
+Property                | Type                         | Description
+----------------------- | ---------------------------- | -----------
+id                      | string                       | Id of the stop. Used for adding stops to a trip option.
+price                   | string                       | Price of the stop. If the stop is in `includedStops` then this price is already part of `totalPrice` under `pricing` of the `TripOption`.
+name                    | string                       | Name of the stop.
+image                   | string                       | Link to the image of the stop.
+title                   | string                       | Title of the stop description.
+perex                   | string                       | Perex of the stop description.
+description             | string                       | The stop description.
+durationInMinutes       | integer                      | Expected duration of the stop.
+order                   | integer                      | Order of this stop on this trip.
+timezone                | string                       | Name of the timezone matching the location of the stop.
+country                 | object - `Country`           | Details about the country where the stop is located.
+
+### Country
+
+Property                | Type                         | Description
+----------------------- | ---------------------------- | -----------
+englishName             | string                       | Name of the country in English.
