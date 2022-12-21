@@ -423,3 +423,21 @@ Property                | Type                         | Description
 ----------------------- | ---------------------------- | -----------
 totalPrice              | number                       | Total price of this option based on requested passenger count.
 pricePerPassenger       | number                       | Price per passenger. Optional, for shared options only.
+
+### Vehicle
+
+Property                | Type                         | Description
+----------------------- | ---------------------------- | -----------
+type                    | string                       | Type of vehicle. "sedan", "mpv", "van", "luxury" or "shuttle"
+maxPassengers           | integer                      | Maximum number of passengers that can take a trip in this vehicle.
+description             | string                       | Description of the vehicle type, e.g. models that it is similar to.
+image                   | string                       | Link to an illustrative image of the vehicle type. Not an image of the exact vehicle.
+
+### Luggage
+
+Property                | Type                         | Description
+----------------------- | ---------------------------- | -----------
+maxTotalCarryons        | integer                      | Maximum amount of carry-on luggage that passengers can bring on this trip.
+maxTotalSuitcases       | integer                      | Maximum amount of suitcases that passengers can bring on this trip.
+maxCarryonsPerPerson    | integer                      | Maximum amount of carry-on luggage that one passenger can bring on this trip. Optional, for shared trips only.
+maxSuitcasesPerPerson   | integer                      | Maximum amount of suitcases that one passenger can bring on this trip. Optional, for shared trips only.
