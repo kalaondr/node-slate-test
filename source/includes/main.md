@@ -513,7 +513,7 @@ curl -d '{ "optionId": "1d32109f-c2e2-44fe-b2cf-461ef3730541", "selectedStops": 
          "id":"519314e3-cd92-41e0-85b6-c652c345e9d0",
          "type":"Private",
          "distanceKm":352,
-         "travelTimeMinutes":268,
+         "travelTimeMinutes":328,
          "pickUp":{
             "lat":50.10,
             "lon":14.25,
@@ -533,8 +533,8 @@ curl -d '{ "optionId": "1d32109f-c2e2-44fe-b2cf-461ef3730541", "selectedStops": 
             "image":"image link"
          },
          "luggage":{
-            "carryonsTotalCount":3,
-            "suitcasesTotalCount":3
+            "maxTotalCarryons":3,
+            "maxTotalSuitcases":3
          },
          "availableChildSeatTypes":[
             {
@@ -543,7 +543,9 @@ curl -d '{ "optionId": "1d32109f-c2e2-44fe-b2cf-461ef3730541", "selectedStops": 
                "ageFrom":0,
                "ageTo":1,
                "weightInPoundsFrom":0,
-               "weightInPoundsTo":26
+               "weightInPoundsTo":26,
+               "weightInKilosFrom":0,
+               "weightInKilosTo":10
             },
             {
                "childSeatType":"ForwardFacing",
@@ -551,7 +553,9 @@ curl -d '{ "optionId": "1d32109f-c2e2-44fe-b2cf-461ef3730541", "selectedStops": 
                "ageFrom":1,
                "ageTo":4,
                "weightInPoundsFrom":18,
-               "weightInPoundsTo":36
+               "weightInPoundsTo":36,
+               "weightInKilosFrom":8,
+               "weightInKilosTo":16
             },
             {
                "childSeatType":"BoosterSeat",
@@ -559,7 +563,9 @@ curl -d '{ "optionId": "1d32109f-c2e2-44fe-b2cf-461ef3730541", "selectedStops": 
                "ageFrom":4,
                "ageTo":6,
                "weightInPoundsFrom":30,
-               "weightInPoundsTo":50
+               "weightInPoundsTo":50,
+               "weightInKilosFrom":14,
+               "weightInKilosTo":23
             },
             {
                "childSeatType":"Booster",
@@ -567,7 +573,9 @@ curl -d '{ "optionId": "1d32109f-c2e2-44fe-b2cf-461ef3730541", "selectedStops": 
                "ageFrom":6,
                "ageTo":12,
                "weightInPoundsFrom":44,
-               "weightInPoundsTo":72
+               "weightInPoundsTo":72,
+               "weightInKilosFrom":20,
+               "weightInKilosTo":33
             }
          ],
          "includedStops":[
@@ -580,6 +588,7 @@ curl -d '{ "optionId": "1d32109f-c2e2-44fe-b2cf-461ef3730541", "selectedStops": 
                "perex":"A town with a history as deep and flavourful as its wine, Mikulov provides a perfect combination of relaxation and exploration.",
                "description":"Often favoured by visitors with a more active approach to life, Mikulov has much to offer. Surrounded by idyllic countryside, crisscrossed by bicycle paths and marked hiking trails, and the nearby Nové Mlýny lakes, there is something for everyone to enjoy. After all that fresh air, a glass of wine will be more than welcome, and fortunately, Mikulov is the centre for Czech wine making. Due to a high concentration of limestone in the local soil, wine from this region has a unique character and distinct taste. If you like your wine with a side-serving of history, Mikulov Castle dates from the 1730s, and the Dietrichstein Tomb is the final resting place of a Bohemian noble family. Mikulov is also significant for its strong Jewish history. In the early 1800s Mikulov's Jewish Quarter was the largest in Moravia with half the town's inhabitants being of Jewish faith.",
                "durationInMinutes":60,
+               "order":2,
                "timezone":"Europe/Prague",
                "country":{
                   "englishName":"Czech Republic"
@@ -596,6 +605,7 @@ curl -d '{ "optionId": "1d32109f-c2e2-44fe-b2cf-461ef3730541", "selectedStops": 
                "perex":"This UNESCO-listed chateau and sprawling park was the Lichtenstein's holiday home - exactly the kind of extravagance you'd expect from a dynasty with their own country. ",
                "description":"The Liechtensteins really came into the money with the fortunes seized from Czech noblemen after their victory at the Battle of White Mountain in 1620, and Lednice was one of the presents they bought themselves. In the mid-19th century the baroque manor was given a complete makeover in the 'Windsor Gothic' style, leaving it as we see it today: a shameless flaunting of fabulous wealth, a slap in the face to anyone foolish enough to think that the French Revolution had ended high-living in Europe. The surrounding English landscape park, the largest in the country, is an incomparable swath of green, sprinkled with Romantic follies. There's also a monumental greenhouse open all year round, overflowing with exotic growths gathered by an army of botanists across the Americas. The greenhouse's exoticism is echoed by the charming minaret, constructed at the turn of the 18th century, bringing a whiff of Morocco to Moravia.\nFor more info: www.zamek-lednice.com",
                "durationInMinutes":60,
+               "order":1,
                "timezone":"Europe/Prague",
                "country":{
                   "englishName":"Czech Republic"
@@ -607,4 +617,4 @@ curl -d '{ "optionId": "1d32109f-c2e2-44fe-b2cf-461ef3730541", "selectedStops": 
 }
 ```
 
-This endpoint is used to customize a trip option returned by the Search endpoint. The result is a new trip option with a new id that can be booked or customized again. The format of the response body is the same as for the Search endpoint. Currently the only supported customization operation is selection of stops for private trips. Selected stops will appear in `includedStops` of the returned option. In case of repeated calls, previously selected stops will be replaced, so if you selected one stop and want to change it to two stops, you need to send both stops in `selectedStops`.
+This endpoint is used to customize a trip option returned by the Search endpoint. The result is a new trip option with a new id that can be booked or customized again. The format of the response body is the same as for the Search endpoint. Currently the only supported customization operation is selection of stops for private trips. Selected stops will appear in `includedStops` of the returned option. In case of repeated calls, previously selected stops will be replaced, so if you selected one stop and want to change it to two stops, you need to send both stops in `selectedStops`. `totalPrice` and `travelTimeMinutes` will be automatically updated to reflect the selected stops.
