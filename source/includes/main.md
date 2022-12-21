@@ -380,14 +380,14 @@ This endpoint returns all trip options for given origin, destination, departure 
 
 ### Query Parameters
 
-Parameter           | Description
-------------------- | -----------
-originLatitude      | Origin latitude in degrees.
-originLongitude     | Origin longitued in degrees.
-destinationLatitude | Destination latitude in degrees.
-originLongitude     | Destination longitued in degrees.
-departureTime       | Departure time as a UNIX timestamp in seconds.
-passengersCount     | Count of passengers to transport.
+Parameter           | Type    | Description
+------------------- | ------- | -----------
+originLatitude      | number  | Origin latitude in degrees.
+originLongitude     | number  | Origin longitued in degrees.
+destinationLatitude | number  | Destination latitude in degrees.
+originLongitude     | number  | Destination longitued in degrees.
+departureTime       | integer | Departure time as a UNIX timestamp in seconds.
+passengersCount     | integer | Count of passengers to transport.
 
 ### Response body
 
@@ -487,7 +487,7 @@ englishName             | string                       | Name of the country in 
 
 ## Customize
 
-> To add Mikulov stop to the sedan vehicle type private trip option from Search endpoint example above, use the following call:
+> To add the Mikulov stop to the sedan vehicle type private trip option from the Search endpoint example above, use the following call:
 
 ```bash
 curl -d '{ "optionId": "1d32109f-c2e2-44fe-b2cf-461ef3730541", "selectedStops": ["4ee58c0c-4e56-46ef-bd22-406a1bc60e1c"] }' -H "Content-Type: application/json" -H "x-api-key: your-api-key" -X POST https://api.mydaytrip.com/partners/v3/trip/search/customize
@@ -618,3 +618,14 @@ curl -d '{ "optionId": "1d32109f-c2e2-44fe-b2cf-461ef3730541", "selectedStops": 
 ```
 
 This endpoint is used to customize a trip option returned by the Search endpoint. The result is a new trip option with a new id that can be booked or customized again. The format of the response body is the same as for the Search endpoint. Currently the only supported customization operation is selection of stops for private trips. Selected stops will appear in `includedStops` of the returned option. In case of repeated calls, previously selected stops will be replaced, so if you selected one stop and want to change it to two stops, you need to send both stops in `selectedStops`. `totalPrice` and `travelTimeMinutes` will be automatically updated to reflect the selected stops.
+
+### Request body
+
+Property        | Type                         | Description
+--------------- | ---------------------------- | -----------
+optionId        | string                       | Id of the option you want to customize. Taken from Search or Customize endpoint response.
+selectedStops   | list of string               | List of ids of stops to include in the trip. Will replace currently included stops.
+
+### Response body
+
+Same format as for the [Search endpoint](#search)
