@@ -82,7 +82,7 @@ curl "https://api.mydaytrip.com/partners/v3/trip/search?originLongitude=14.2559&
             "lon":16.37
          },
          "pricing":{
-            "totalPrice":254
+            "totalPrice":260
          },
          "vehicle":{
             "type":"sedan",
@@ -512,8 +512,8 @@ curl -d '{ "optionId": "1d32109f-c2e2-44fe-b2cf-461ef3730541", "selectedStops": 
       {
          "id":"519314e3-cd92-41e0-85b6-c652c345e9d0",
          "type":"Private",
-         "distanceKm":352,
-         "travelTimeMinutes":328,
+         "distanceKm":334,
+         "travelTimeMinutes":268,
          "pickUp":{
             "lat":50.10,
             "lon":14.25,
