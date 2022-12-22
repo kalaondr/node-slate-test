@@ -64,6 +64,7 @@ curl "https://api.mydaytrip.com/partners/v3/trip/search?originLongitude=14.2559&
 ```json
 {
    "searchId":"f0e34a1b-2b3d-4747-b426-292633b615b4",
+   "expiresAt": "2022-12-04T18:00:00Z",
    "passengersCount":3,
    "currency":"EUR",
    "options":[
@@ -394,6 +395,7 @@ passengersCount     | integer | Count of passengers to transport.
 Property        | Type                         | Description
 --------------- | ---------------------------- | -----------
 searchId        | string                       | Unique id of your search query.
+expiresAt       | string                       | UTC timestamp of when the offers in this response expire. After this time it is no longer possible to book them, you need to make a new search.
 passengersCount | integer                      | The count of passengers this search query was for.
 currency        | string                       | Currency used for all prices in this response.
 options         | list of `TripOption`         | List of options for this trip.
@@ -506,6 +508,7 @@ curl -d '{ "optionId": "1d32109f-c2e2-44fe-b2cf-461ef3730541", "selectedStops": 
 ```json
 {
    "searchId":"f0e34a1b-2b3d-4747-b426-292633b615b4",
+   "expiresAt": "2022-12-04T18:00:00Z",
    "passengersCount":3,
    "currency":"EUR",
    "options":[

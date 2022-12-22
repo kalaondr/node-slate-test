@@ -70,6 +70,7 @@
             </blockquote>
             <pre class="highlight json"><code><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">&quot;searchId&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;f0e34a1b-2b3d-4747-b426-292633b615b4&quot;</span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">&quot;expiresAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-12-04T18:00:00Z&quot;</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">&quot;passengersCount&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">&quot;currency&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;EUR&quot;</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">&quot;options&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span>
@@ -437,6 +438,11 @@
                      <td>Unique id of your search query.</td>
                   </tr>
                   <tr>
+                     <td>expiresAt</td>
+                     <td>string</td>
+                     <td>UTC timestamp of when the offers in this response expire. After this time it is no longer possible to book them, you need to make a new search.</td>
+                  </tr>
+                  <tr>
                      <td>passengersCount</td>
                      <td>integer</td>
                      <td>The count of passengers this search query was for.</td>
@@ -794,6 +800,7 @@
             </blockquote>
             <pre class="highlight json"><code><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">&quot;searchId&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;f0e34a1b-2b3d-4747-b426-292633b615b4&quot;</span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">&quot;expiresAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-12-04T18:00:00Z&quot;</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">&quot;passengersCount&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">&quot;currency&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;EUR&quot;</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">&quot;options&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span>
