@@ -632,3 +632,40 @@ selectedStops   | list of string               | List of ids of stops to include
 ### Response body
 
 Same format as for the [Search endpoint](#search)
+
+## Book
+
+> To book the customized trip option with stops from the example above or to book a trip option from the original Search endpoint response for two adults and one child with a booster seat, use the following call:
+
+```bash
+curl -d '{ "optionId": "f0e34a1b-2b3d-4747-b426-292633b615b4", "pickupAddress": "Havel airport", "dropoffAddress": "Vienna central square", "customerNote": "We will stand next to the entrance", "flightNumber": "FR008",	"passengerDetails": [ { 			"type": "lead", "firstName": "John", "lastName": "Doe", "phone": "+41555555555", "email": "client-email@example.com", 			"birthday": 629424000 }, { "type": "adult" }, { "type": "child", "childSeatType": "Booster" } } }' -H "Content-Type: application/json" -H "x-api-key: your-api-key" -X POST https://api.mydaytrip.com/partners/v3/trip/book
+```
+
+```javascript
+
+```
+
+```python
+
+```
+
+> The above call returns JSON structured like this:
+
+```json
+{
+   "bookingId": "cb102778-a3d7-426e-8d18-6bd6b296f283"  
+}
+```
+
+This endpoint is used to book a trip option. Any trip option from Search or Customize endpoint response can be booked if the search results have not expired yet (see `expiresAt` property). You need to send id of the chosen option and passenger details to this endpoint. The result is a booking id that can be used to cancel the booking if not too close to departure.
+
+### Request body
+
+Property         | Type                         | Description
+---------------- | ---------------------------- | -----------
+optionId         | string                       | Id of the option you want to book. Taken from Search or Customize endpoint response.
+pickupAddress    | string                       | Optional note for the driver with details about the pick up location.
+dropoffAddress   | string                       | Optional note for the driver with details about the drop off location.
+customerNote     | string                       | Optional note for the driver not related to pick up or drop off.
+flightNumber     | string                       | Optional flight number in case this is an airport pick up.
+passengerDetails | list of PassengerDetail      | List of passengers that will go on this trip. The number of passengers must match the `passengersCount` query parameter from the Search endpoint. There must be at least one passenger of type "Lead" with contact details filled. For passenger of type "Child" you can request a child seat of proper type if this is a private trip.
