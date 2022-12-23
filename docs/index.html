@@ -377,7 +377,7 @@
       <span class="hljs-punctuation">}</span>
    <span class="hljs-punctuation">]</span>
 <span class="hljs-punctuation">}</span></code></pre>
-            <p>This endpoint returns all trip options for given origin, destination, departure time and passenger count. Origin and destination are passed as latitude and longitude coordinates. The unit used is degree with decimal places, for example <code>39.753657, -117.610215</code>. Departure time is passed as a UNIX timestamp in seconds, like <code>1679463169</code>.</p>
+            <p>This endpoint returns all trip options for given origin, destination, departure time and passenger count. Origin and destination are passed as latitude and longitude coordinates. The unit used is degree with decimal places, for example <code>39.753657, -117.610215</code>. Departure time is passed as a UNIX epoch timestamp in seconds, like <code>1679463169</code>.</p>
             <h3 id="http-request">HTTP Request</h3>
             <p><code>GET https://api.mydaytrip.com/partners/v3/trip/search</code></p>
             <h3 id="query-parameters">Query Parameters</h3>
@@ -413,7 +413,7 @@
                   <tr>
                      <td>departureTime</td>
                      <td>integer</td>
-                     <td>Departure time as a UNIX timestamp in seconds.</td>
+                     <td>Departure time as a UNIX epoch timestamp in seconds.</td>
                   </tr>
                   <tr>
                      <td>passengersCount</td>
@@ -935,6 +935,107 @@
             </table>
             <h3 id="response-body-1">Response body</h3>
             <p>Same format as for the <a href="#search">Search endpoint</a></p>
+            <h2 id="book">Book</h2>
+            <blockquote>
+               <p>To book the customized trip option with stops from the example above or to book a trip option from the original Search endpoint response for two adults and one child with a booster seat, use the following call:</p>
+            </blockquote>
+            <pre class="highlight bash"><code>curl -d <span class="hljs-string">&#x27;{ &quot;optionId&quot;: &quot;f0e34a1b-2b3d-4747-b426-292633b615b4&quot;, &quot;pickupAddress&quot;: &quot;Havel airport&quot;, &quot;dropoffAddress&quot;: &quot;Vienna central square&quot;, &quot;customerNote&quot;: &quot;We will stand next to the entrance&quot;, &quot;flightNumber&quot;: &quot;FR008&quot;,	&quot;passengerDetails&quot;: [ { 			&quot;type&quot;: &quot;lead&quot;, &quot;firstName&quot;: &quot;John&quot;, &quot;lastName&quot;: &quot;Doe&quot;, &quot;phone&quot;: &quot;+41555555555&quot;, &quot;email&quot;: &quot;client-email@example.com&quot;, 			&quot;birthday&quot;: 629424000 }, { &quot;type&quot;: &quot;adult&quot; }, { &quot;type&quot;: &quot;child&quot;, &quot;childSeatType&quot;: &quot;Booster&quot; } } }&#x27;</span> -H <span class="hljs-string">&quot;Content-Type: application/json&quot;</span> -H <span class="hljs-string">&quot;x-api-key: your-api-key&quot;</span> -X POST https://api.mydaytrip.com/partners/v3/trip/book</code></pre><pre class="highlight javascript"><code></code></pre><pre class="highlight python"><code></code></pre>
+            <blockquote>
+               <p>The above call returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json"><code><span class="hljs-punctuation">{</span>
+   <span class="hljs-attr">&quot;bookingId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;cb102778-a3d7-426e-8d18-6bd6b296f283&quot;</span>  
+<span class="hljs-punctuation">}</span></code></pre>
+            <p>This endpoint is used to book a trip option. Any trip option from Search or Customize endpoint response can be booked if the search results have not expired yet (see <code>expiresAt</code> property). You need to send id of the chosen option and passenger details to this endpoint. The result is a booking id that can be used to cancel the booking if not too close to departure.</p>
+            <h3 id="request-body-1">Request body</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Property</th>
+                     <th>Type</th>
+                     <th>Description</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>optionId</td>
+                     <td>string</td>
+                     <td>Id of the option you want to book. Taken from Search or Customize endpoint response.</td>
+                  </tr>
+                  <tr>
+                     <td>pickupAddress</td>
+                     <td>string</td>
+                     <td>Optional note for the driver with details about the pick up location.</td>
+                  </tr>
+                  <tr>
+                     <td>dropoffAddress</td>
+                     <td>string</td>
+                     <td>Optional note for the driver with details about the drop off location.</td>
+                  </tr>
+                  <tr>
+                     <td>customerNote</td>
+                     <td>string</td>
+                     <td>Optional note for the driver not related to pick up or drop off.</td>
+                  </tr>
+                  <tr>
+                     <td>flightNumber</td>
+                     <td>string</td>
+                     <td>Optional flight number in case this is an airport pick up.</td>
+                  </tr>
+                  <tr>
+                     <td>passengerDetails</td>
+                     <td>list of PassengerDetail</td>
+                     <td>List of passengers that will go on this trip. The number of passengers must match the <code>passengersCount</code> query parameter from the Search endpoint. There must be at least one passenger of type &quot;Lead&quot; with contact details filled. For passenger of type &quot;Child&quot; you can request a child seat of proper type if this is a private trip.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="passengerdetail">PassengerDetail</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Property</th>
+                     <th>Type</th>
+                     <th>Description</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>type</td>
+                     <td>string</td>
+                     <td>Type of the passenger. &quot;Lead&quot;, &quot;Adult&quot; or &quot;Child&quot;</td>
+                  </tr>
+                  <tr>
+                     <td>firstName</td>
+                     <td>string</td>
+                     <td>First name of the passenger - required the for lead passenger.</td>
+                  </tr>
+                  <tr>
+                     <td>lastName</td>
+                     <td>string</td>
+                     <td>Last name of the passenger - required for the lead passenger.</td>
+                  </tr>
+                  <tr>
+                     <td>phone</td>
+                     <td>string</td>
+                     <td>Phone number of the passenger - required for the lead passenger. Include country prefix.</td>
+                  </tr>
+                  <tr>
+                     <td>email</td>
+                     <td>string</td>
+                     <td>Email of the passenger - required for the lead passenger.</td>
+                  </tr>
+                  <tr>
+                     <td>birthday</td>
+                     <td>integer</td>
+                     <td>Birthday of the passenger - required for the lead passenger. Unix epoch timestamp in seconds.</td>
+                  </tr>
+                  <tr>
+                     <td>childSeatType</td>
+                     <td>string</td>
+                     <td>Requested child seat type for a passenger of type &quot;Child&quot;. Must match one of offered child seat types from <code>availableChildSeatTypes</code> of the trip option you are booking.</td>
+                  </tr>
+               </tbody>
+            </table>
             <h1 id="errors">Errors</h1>
             <p>Daytrip uses conventional HTTP response codes to indicate the success or failure of an API request. In general: Codes in the 2xx range indicate success. Codes in the 4xx range indicate an error that failed given the information provided (e.g., a required parameter was omitted, no trip was found for given parameters, etc.). Codes in the 5xx range indicate an error with Daytrip&#39;s servers (these are rare).</p>
             <table>

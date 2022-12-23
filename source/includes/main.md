@@ -373,7 +373,7 @@ curl "https://api.mydaytrip.com/partners/v3/trip/search?originLongitude=14.2559&
 }
 ```
 
-This endpoint returns all trip options for given origin, destination, departure time and passenger count. Origin and destination are passed as latitude and longitude coordinates. The unit used is degree with decimal places, for example `39.753657, -117.610215`. Departure time is passed as a UNIX timestamp in seconds, like `1679463169`.
+This endpoint returns all trip options for given origin, destination, departure time and passenger count. Origin and destination are passed as latitude and longitude coordinates. The unit used is degree with decimal places, for example `39.753657, -117.610215`. Departure time is passed as a UNIX epoch timestamp in seconds, like `1679463169`.
 
 ### HTTP Request
 
@@ -387,7 +387,7 @@ originLatitude      | number  | Origin latitude in degrees.
 originLongitude     | number  | Origin longitued in degrees.
 destinationLatitude | number  | Destination latitude in degrees.
 originLongitude     | number  | Destination longitued in degrees.
-departureTime       | integer | Departure time as a UNIX timestamp in seconds.
+departureTime       | integer | Departure time as a UNIX epoch timestamp in seconds.
 passengersCount     | integer | Count of passengers to transport.
 
 ### Response body
@@ -669,3 +669,15 @@ dropoffAddress   | string                       | Optional note for the driver w
 customerNote     | string                       | Optional note for the driver not related to pick up or drop off.
 flightNumber     | string                       | Optional flight number in case this is an airport pick up.
 passengerDetails | list of PassengerDetail      | List of passengers that will go on this trip. The number of passengers must match the `passengersCount` query parameter from the Search endpoint. There must be at least one passenger of type "Lead" with contact details filled. For passenger of type "Child" you can request a child seat of proper type if this is a private trip.
+
+### PassengerDetail
+
+Property         | Type                         | Description
+---------------- | ---------------------------- | -----------
+type             | string                       | Type of the passenger. "Lead", "Adult" or "Child"
+firstName        | string                       | First name of the passenger - required the for lead passenger.
+lastName         | string                       | Last name of the passenger - required for the lead passenger.
+phone            | string                       | Phone number of the passenger - required for the lead passenger. Include country prefix.
+email            | string                       | Email of the passenger - required for the lead passenger.
+birthday         | integer                      | Birthday of the passenger - required for the lead passenger. Unix epoch timestamp in seconds.
+childSeatType    | string                       | Requested child seat type for a passenger of type "Child". Must match one of offered child seat types from `availableChildSeatTypes` of the trip option you are booking.
