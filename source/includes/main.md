@@ -667,49 +667,53 @@ curl https://api.mydaytrip.com/partners/v3/trip/details/bookingId -H "x-api-key:
 ```json
 {
    "status": "Confirmed",
-   "type": "Private",
+   "bookingDate": "2022-12-05T18:00:00Z",
    "passengersCount": 3,
-   "distanceKm":334,
-   "travelTimeMinutes":268,
-   "pickUp":{
-      "lat":50.10,
-      "lon":14.25,
-      "time":"2022-12-05T18:00:00Z"
-   },
-   "dropOff":{
-      "lat":48.20,
-      "lon":16.37
-   },
-   "pricing":{
-      "totalPrice":288
-   },
-   "vehicle":{
-      "type":"sedan",
-      "maxPassengers":3,
-      "description":"Sedan comparable to a Volkswagen Passat, up to 3 passengers with luggage.",
-      "image":"https://daytrip.imgix.net/vehicles/sedan.png"
-   },
-   "luggage":{
-      "maxTotalCarryons":3,
-      "maxTotalSuitcases":3
-   },
-   "includedStops":[
-      {
-         "id":"4ee58c0c-4e56-46ef-bd22-406a1bc60e1c",
-         "price":28,
-         "name":"Mikulov",
-         "image":"https://daytrip.imgix.net/510.jpg",
-         "title":"The Heart of Czech Wine Country",
-         "perex":"A town with a history as deep and flavourful as its wine, Mikulov provides a perfect combination of relaxation and exploration.",
-         "description":"Often favoured by visitors with a more active approach to life, Mikulov has much to offer. Surrounded by idyllic countryside, crisscrossed by bicycle paths and marked hiking trails, and the nearby Nové Mlýny lakes, there is something for everyone to enjoy. After all that fresh air, a glass of wine will be more than welcome, and fortunately, Mikulov is the centre for Czech wine making. Due to a high concentration of limestone in the local soil, wine from this region has a unique character and distinct taste. If you like your wine with a side-serving of history, Mikulov Castle dates from the 1730s, and the Dietrichstein Tomb is the final resting place of a Bohemian noble family. Mikulov is also significant for its strong Jewish history. In the early 1800s Mikulov's Jewish Quarter was the largest in Moravia with half the town's inhabitants being of Jewish faith.",
-         "durationInMinutes":60,
-         "order":2,
-         "timezone":"Europe/Prague",
-         "country":{
-            "englishName":"Czech Republic"
+   "currency": "EUR",
+   "trip": {
+      "type": "Private",   
+      "distanceKm":334,
+      "travelTimeMinutes":268,
+      "pickUp":{
+         "lat":50.10,
+         "lon":14.25,
+         "time":"2022-12-05T18:00:00Z"
+      },
+      "dropOff":{
+         "lat":48.20,
+         "lon":16.37
+      },
+      "pricing":{
+         "totalPrice":288
+      },
+      "vehicle":{
+         "type":"sedan",
+         "maxPassengers":3,
+         "description":"Sedan comparable to a Volkswagen Passat, up to 3 passengers with luggage.",
+         "image":"https://daytrip.imgix.net/vehicles/sedan.png"
+      },
+      "luggage":{
+         "maxTotalCarryons":3,
+         "maxTotalSuitcases":3
+      },
+      "includedStops":[
+         {
+            "id":"4ee58c0c-4e56-46ef-bd22-406a1bc60e1c",
+            "price":28,
+            "name":"Mikulov",
+            "image":"https://daytrip.imgix.net/510.jpg",
+            "title":"The Heart of Czech Wine Country",
+            "perex":"A town with a history as deep and flavourful as its wine, Mikulov provides a perfect combination of relaxation and exploration.",
+            "description":"Often favoured by visitors with a more active approach to life, Mikulov has much to offer. Surrounded by idyllic countryside, crisscrossed by bicycle paths and marked hiking trails, and the nearby Nové Mlýny lakes, there is something for everyone to enjoy. After all that fresh air, a glass of wine will be more than welcome, and fortunately, Mikulov is the centre for Czech wine making. Due to a high concentration of limestone in the local soil, wine from this region has a unique character and distinct taste. If you like your wine with a side-serving of history, Mikulov Castle dates from the 1730s, and the Dietrichstein Tomb is the final resting place of a Bohemian noble family. Mikulov is also significant for its strong Jewish history. In the early 1800s Mikulov's Jewish Quarter was the largest in Moravia with half the town's inhabitants being of Jewish faith.",
+            "durationInMinutes":60,
+            "order":2,
+            "timezone":"Europe/Prague",
+            "country":{
+               "englishName":"Czech Republic"
+            }
          }
-      }
-   ],
+      ],
+   },
    "pickupAddressNote": "Havel airport", 
    "dropoffAddressNote": "Vienna central square", 
    "customerNote": "We will stand next to the entrance", 
@@ -729,9 +733,32 @@ curl https://api.mydaytrip.com/partners/v3/trip/details/bookingId -H "x-api-key:
       { 
          "type": "child", "childSeatType": "Booster" 
       } 
-   ]
+   ]   
 }
 ```
+
+This endpoint returns details of a booked trip. It provides the status of the booking, information about the trip option and the data that were provided when booking the trip.
+
+### HTTP Request
+
+`GET https://api.mydaytrip.com/partners/v3/trip/details/bookingId`
+
+Replace `bookingId` with id of the booking you want to retrieve details for.
+
+### Response body
+
+Property           | Type                                        | Description
+------------------ | ------------------------------------------- | -----------
+status             | string                                      | Booking status. "Pending", "Confirmed" or "Cancelled".
+bookingDate        | string                                      | UTC timestamp of when this booking was created.
+passengersCount    | integer                                     | The count of passengers this booking is for.
+currency           | string                                      | Currency used for all prices in this response.
+trip               | object - [TripOption](#tripoption)          | Information about the trip.
+pickupAddressNote  | string                                      | Optional note for the driver with details about the pick up location.
+dropoffAddressNote | string                                      | Optional note for the driver with details about the drop off location.
+customerNote       | string                                      | Optional note for the driver not related to pick up or drop off.
+flightNumber       | string                                      | Optional flight number in case this is an airport pick up.
+passengerDetails   | list of [PassengerDetail](#passengerdetail) | List of passengers that will go on this trip. The number of passengers must match the `passengersCount` query parameter from the Search endpoint. There must be at least one passenger of type "Lead" with contact details filled. For passenger of type "Child" you can request a child seat of proper type if this is a private trip.
 
 # Entities
 
