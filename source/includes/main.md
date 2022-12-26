@@ -487,6 +487,14 @@ Property                | Type                         | Description
 ----------------------- | ---------------------------- | -----------
 englishName             | string                       | Name of the country in English.
 
+### Error status codes
+
+Status code | Description
+----------- | -----------
+400         | Invalid request - missing mandatory query parameters or wrong types.
+401         | API key missing or invalid.
+404         | No trip options found for given request.
+
 ## Customize
 
 > To add the Mikulov stop to the sedan vehicle type private trip option from the Search endpoint example above, use the following call:
@@ -633,12 +641,21 @@ selectedStops   | list of string               | List of ids of stops to include
 
 Same format as for the [Search endpoint](#search)
 
+### Error status codes
+
+Status code | Description
+----------- | -----------
+400         | Invalid request - missing mandatory properties, wrong types or not a valid json.
+401         | API key missing or invalid.
+403         | Forbidden request - trying to customize a trip option owned by someone else.
+404         | Trip option not found or expired. Stop not found.
+
 ## Book
 
 > To book the customized trip option with stops from the example above or to book a trip option from the original Search endpoint response for two adults and one child with a booster seat, use the following call:
 
 ```bash
-curl -d '{ "optionId": "f0e34a1b-2b3d-4747-b426-292633b615b4", "pickupAddress": "Havel airport", "dropoffAddress": "Vienna central square", "customerNote": "We will stand next to the entrance", "flightNumber": "FR008",	"passengerDetails": [ { 			"type": "lead", "firstName": "John", "lastName": "Doe", "phone": "+41555555555", "email": "client-email@example.com", 			"birthday": 629424000 }, { "type": "adult" }, { "type": "child", "childSeatType": "Booster" } } }' -H "Content-Type: application/json" -H "x-api-key: your-api-key" -X POST https://api.mydaytrip.com/partners/v3/trip/book
+curl -d '{ "optionId": "f0e34a1b-2b3d-4747-b426-292633b615b4", "pickupAddress": "Havel airport", "dropoffAddress": "Vienna central square", "customerNote": "We will stand next to the entrance", "flightNumber": "FR008",	"passengerDetails": [ { 			"type": "lead", "firstName": "John", "lastName": "Doe", "phone": "+41555555555", "email": "client-email@example.com", 			"birthday": 629424000 }, { "type": "adult" }, { "type": "child", "childSeatType": "Booster" } ] }' -H "Content-Type: application/json" -H "x-api-key: your-api-key" -X POST https://api.mydaytrip.com/partners/v3/trip/book
 ```
 
 ```javascript
@@ -681,3 +698,47 @@ phone            | string                       | Phone number of the passenger 
 email            | string                       | Email of the passenger - required for the lead passenger.
 birthday         | integer                      | Birthday of the passenger - required for the lead passenger. Unix epoch timestamp in seconds.
 childSeatType    | string                       | Requested child seat type for a passenger of type "Child". Must match one of offered child seat types from `availableChildSeatTypes` of the trip option you are booking.
+
+### Error status codes
+
+Status code | Description
+----------- | -----------
+400         | Invalid request - missing mandatory properties, mismatch in passenger count, missing lead passenger, wrong types or not a valid json.
+401         | API key missing or invalid.
+403         | Forbidden request - trying to book a trip option owned by someone else.
+404         | Trip option not found or expired.
+
+## Cancel
+
+> To cancel a booked trip, use the following call:
+
+```bash
+curl -d '{ "bookingId": "cb102778-a3d7-426e-8d18-6bd6b296f283" }' -H "Content-Type: application/json" -H "x-api-key: your-api-key" -X POST https://api.mydaytrip.com/partners/v3/trip/cancel
+```
+
+```javascript
+
+```
+
+```python
+
+```
+
+> The above call returns 204 No Content success HTTP status code.
+
+This endpoint is used to cancel a booked trip. Only trips that have departure in more than 24 hours can be cancelled currently - this is a subject to change at any time.
+
+### Request body
+
+Property         | Type                         | Description
+---------------- | ---------------------------- | -----------
+bookingId        | string                       | Id of the booking to cancel. Taken from Book endpoint response.
+
+### Error status codes
+
+Status code | Description
+----------- | -----------
+400         | Invalid request - bookingId missing or not a valid json.
+401         | API key missing or invalid.
+403         | Forbidden request - trying to cancel a booking owned by someone else or the departure is too soon.
+404         | Booking not found.

@@ -790,6 +790,29 @@
                   </tr>
                </tbody>
             </table>
+            <h3 id="error-status-codes">Error status codes</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Status code</th>
+                     <th>Description</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>400</td>
+                     <td>Invalid request - missing mandatory query parameters or wrong types.</td>
+                  </tr>
+                  <tr>
+                     <td>401</td>
+                     <td>API key missing or invalid.</td>
+                  </tr>
+                  <tr>
+                     <td>404</td>
+                     <td>No trip options found for given request.</td>
+                  </tr>
+               </tbody>
+            </table>
             <h2 id="customize">Customize</h2>
             <blockquote>
                <p>To add the Mikulov stop to the sedan vehicle type private trip option from the Search endpoint example above, use the following call:</p>
@@ -935,11 +958,38 @@
             </table>
             <h3 id="response-body-1">Response body</h3>
             <p>Same format as for the <a href="#search">Search endpoint</a></p>
+            <h3 id="error-status-codes-1">Error status codes</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Status code</th>
+                     <th>Description</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>400</td>
+                     <td>Invalid request - missing mandatory properties, wrong types or not a valid json.</td>
+                  </tr>
+                  <tr>
+                     <td>401</td>
+                     <td>API key missing or invalid.</td>
+                  </tr>
+                  <tr>
+                     <td>403</td>
+                     <td>Forbidden request - trying to customize a trip option owned by someone else.</td>
+                  </tr>
+                  <tr>
+                     <td>404</td>
+                     <td>Trip option not found or expired. Stop not found.</td>
+                  </tr>
+               </tbody>
+            </table>
             <h2 id="book">Book</h2>
             <blockquote>
                <p>To book the customized trip option with stops from the example above or to book a trip option from the original Search endpoint response for two adults and one child with a booster seat, use the following call:</p>
             </blockquote>
-            <pre class="highlight bash"><code>curl -d <span class="hljs-string">&#x27;{ &quot;optionId&quot;: &quot;f0e34a1b-2b3d-4747-b426-292633b615b4&quot;, &quot;pickupAddress&quot;: &quot;Havel airport&quot;, &quot;dropoffAddress&quot;: &quot;Vienna central square&quot;, &quot;customerNote&quot;: &quot;We will stand next to the entrance&quot;, &quot;flightNumber&quot;: &quot;FR008&quot;,	&quot;passengerDetails&quot;: [ { 			&quot;type&quot;: &quot;lead&quot;, &quot;firstName&quot;: &quot;John&quot;, &quot;lastName&quot;: &quot;Doe&quot;, &quot;phone&quot;: &quot;+41555555555&quot;, &quot;email&quot;: &quot;client-email@example.com&quot;, 			&quot;birthday&quot;: 629424000 }, { &quot;type&quot;: &quot;adult&quot; }, { &quot;type&quot;: &quot;child&quot;, &quot;childSeatType&quot;: &quot;Booster&quot; } } }&#x27;</span> -H <span class="hljs-string">&quot;Content-Type: application/json&quot;</span> -H <span class="hljs-string">&quot;x-api-key: your-api-key&quot;</span> -X POST https://api.mydaytrip.com/partners/v3/trip/book</code></pre><pre class="highlight javascript"><code></code></pre><pre class="highlight python"><code></code></pre>
+            <pre class="highlight bash"><code>curl -d <span class="hljs-string">&#x27;{ &quot;optionId&quot;: &quot;f0e34a1b-2b3d-4747-b426-292633b615b4&quot;, &quot;pickupAddress&quot;: &quot;Havel airport&quot;, &quot;dropoffAddress&quot;: &quot;Vienna central square&quot;, &quot;customerNote&quot;: &quot;We will stand next to the entrance&quot;, &quot;flightNumber&quot;: &quot;FR008&quot;,	&quot;passengerDetails&quot;: [ { 			&quot;type&quot;: &quot;lead&quot;, &quot;firstName&quot;: &quot;John&quot;, &quot;lastName&quot;: &quot;Doe&quot;, &quot;phone&quot;: &quot;+41555555555&quot;, &quot;email&quot;: &quot;client-email@example.com&quot;, 			&quot;birthday&quot;: 629424000 }, { &quot;type&quot;: &quot;adult&quot; }, { &quot;type&quot;: &quot;child&quot;, &quot;childSeatType&quot;: &quot;Booster&quot; } ] }&#x27;</span> -H <span class="hljs-string">&quot;Content-Type: application/json&quot;</span> -H <span class="hljs-string">&quot;x-api-key: your-api-key&quot;</span> -X POST https://api.mydaytrip.com/partners/v3/trip/book</code></pre><pre class="highlight javascript"><code></code></pre><pre class="highlight python"><code></code></pre>
             <blockquote>
                <p>The above call returns JSON structured like this:</p>
             </blockquote>
@@ -1033,6 +1083,86 @@
                      <td>childSeatType</td>
                      <td>string</td>
                      <td>Requested child seat type for a passenger of type &quot;Child&quot;. Must match one of offered child seat types from <code>availableChildSeatTypes</code> of the trip option you are booking.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="error-status-codes-2">Error status codes</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Status code</th>
+                     <th>Description</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>400</td>
+                     <td>Invalid request - missing mandatory properties, mismatch in passenger count, missing lead passenger, wrong types or not a valid json.</td>
+                  </tr>
+                  <tr>
+                     <td>401</td>
+                     <td>API key missing or invalid.</td>
+                  </tr>
+                  <tr>
+                     <td>403</td>
+                     <td>Forbidden request - trying to book a trip option owned by someone else.</td>
+                  </tr>
+                  <tr>
+                     <td>404</td>
+                     <td>Trip option not found or expired.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h2 id="cancel">Cancel</h2>
+            <blockquote>
+               <p>To cancel a booked trip, use the following call:</p>
+            </blockquote>
+            <pre class="highlight bash"><code>curl -d <span class="hljs-string">&#x27;{ &quot;bookingId&quot;: &quot;cb102778-a3d7-426e-8d18-6bd6b296f283&quot; }&#x27;</span> -H <span class="hljs-string">&quot;Content-Type: application/json&quot;</span> -H <span class="hljs-string">&quot;x-api-key: your-api-key&quot;</span> -X POST https://api.mydaytrip.com/partners/v3/trip/cancel</code></pre><pre class="highlight javascript"><code></code></pre><pre class="highlight python"><code></code></pre>
+            <blockquote>
+               <p>The above call returns 204 No Content success HTTP status code.</p>
+            </blockquote>
+            <p>This endpoint is used to cancel a booked trip. Only trips that have departure in more than 24 hours can be cancelled currently - this is a subject to change at any time.</p>
+            <h3 id="request-body-2">Request body</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Property</th>
+                     <th>Type</th>
+                     <th>Description</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>bookingId</td>
+                     <td>string</td>
+                     <td>Id of the booking to cancel. Taken from Book endpoint response.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="error-status-codes-3">Error status codes</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Status code</th>
+                     <th>Description</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>400</td>
+                     <td>Invalid request - bookingId missing or not a valid json.</td>
+                  </tr>
+                  <tr>
+                     <td>401</td>
+                     <td>API key missing or invalid.</td>
+                  </tr>
+                  <tr>
+                     <td>403</td>
+                     <td>Forbidden request - trying to cancel a booking owned by someone else or the departure is too soon.</td>
+                  </tr>
+                  <tr>
+                     <td>404</td>
+                     <td>Booking not found.</td>
                   </tr>
                </tbody>
             </table>
