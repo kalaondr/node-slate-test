@@ -392,100 +392,13 @@ passengersCount     | integer | Count of passengers to transport.
 
 ### Response body
 
-Property        | Type                         | Description
---------------- | ---------------------------- | -----------
-searchId        | string                       | Unique id of your search query.
-expiresAt       | string                       | UTC timestamp of when the offers in this response expire. After this time it is no longer possible to book them, you need to make a new search.
-passengersCount | integer                      | The count of passengers this search query was for.
-currency        | string                       | Currency used for all prices in this response.
-options         | list of `TripOption`         | List of options for this trip.
-
-### TripOption
-
-Property                | Type                         | Description
------------------------ | ---------------------------- | -----------
-id                      | string                       | Unique id of the trip option. Used to customize or book this option.
-type                    | string                       | Type of this option. "Private" or "Shared" (predefined shuttle trips).
-distanceKm              | number                       | Length of the trip.
-travelTimeMinutes       | number                       | Expected duration of the trip in minutes.
-pickUp                  | object - `Location`          | Details about the pick up point.
-dropOff                 | object - `Location`          | Details about the drop off point.
-pricing                 | object - `Pricing`           | Details about the pricing.
-vehicle                 | object - `Vehicle`           | Details about the vehicle.
-luggage                 | object - `Luggage`           | Details about the luggage.
-seatsAvailable          | integer                      | Number of available seats in the shared shuttle. Optional.
-availableChildSeatTypes | list of `ChildSeatType`      | List of available child seat types for this trip.
-possibleStops           | list of `Stop`               | Stops that can be added to this trip option.
-includedStops           | list of `Stop`               | Stops that are already included in this option.
-
-### Location
-
-Property                | Type                         | Description
------------------------ | ---------------------------- | -----------
-lat                     | number                       | Latitude in degrees.
-lon                     | number                       | Longitude in degrees.
-time                    | string                       | UTC timestamp of the departure time. Optional, for pick up only.
-description             | string                       | Description of the pick up or drop off. Optional.
-
-### Pricing
-
-Property                | Type                         | Description
------------------------ | ---------------------------- | -----------
-totalPrice              | number                       | Total price of this option based on requested passenger count.
-pricePerPassenger       | number                       | Price per passenger. Optional, for shared options only.
-
-### Vehicle
-
-Property                | Type                         | Description
------------------------ | ---------------------------- | -----------
-type                    | string                       | Type of vehicle. "sedan", "mpv", "van", "luxury" or "shuttle"
-maxPassengers           | integer                      | Maximum number of passengers that can take a trip in this vehicle.
-description             | string                       | Description of the vehicle type, e.g. models that it is similar to.
-image                   | string                       | Link to an illustrative image of the vehicle type. Not an image of the exact vehicle.
-
-### Luggage
-
-Property                | Type                         | Description
------------------------ | ---------------------------- | -----------
-maxTotalCarryons        | integer                      | Maximum amount of carry-on luggage that passengers can bring on this trip.
-maxTotalSuitcases       | integer                      | Maximum amount of suitcases that passengers can bring on this trip.
-maxCarryonsPerPerson    | integer                      | Maximum amount of carry-on luggage that one passenger can bring on this trip. Optional, for shared trips only.
-maxSuitcasesPerPerson   | integer                      | Maximum amount of suitcases that one passenger can bring on this trip. Optional, for shared trips only.
-
-### ChildSeatType
-
-Property                | Type                         | Description
------------------------ | ---------------------------- | -----------
-childSeatType           | string                       | Type of the child seat. "RearFacing", "ForwardFacing", "BoosterSeat" or "Booster"
-description             | string                       | Description of the child seat type.
-ageFrom                 | integer                      | Minimum age in years of a child that this seat type is suitable for.
-ageTo                   | integer                      | Maximum age in years of a child that this seat type is suitable for.
-weightInPoundsFrom      | integer                      | Minimum weight in pounds of a child that this seat type is suitable for.
-weightInPoundsTo        | integer                      | Maximum weight in pounds of a child that this seat type is suitable for.
-weightInKilosFrom       | integer                      | Minimum weight in kilograms of a child that this seat type is suitable for.
-weightInKilosTo         | integer                      | Maximum weight in kilograms of a child that this seat type is suitable for.
-
-### Stop
-
-Property                | Type                         | Description
------------------------ | ---------------------------- | -----------
-id                      | string                       | Id of the stop. Used for adding stops to a trip option.
-price                   | string                       | Price of the stop. If the stop is in `includedStops` then this price is already part of `totalPrice` under `pricing` of the `TripOption`.
-name                    | string                       | Name of the stop.
-image                   | string                       | Link to the image of the stop.
-title                   | string                       | Title of the stop description.
-perex                   | string                       | Perex of the stop description.
-description             | string                       | The stop description.
-durationInMinutes       | integer                      | Expected duration of the stop.
-order                   | integer                      | Order of this stop on this trip.
-timezone                | string                       | Name of the timezone matching the location of the stop.
-country                 | object - `Country`           | Details about the country where the stop is located.
-
-### Country
-
-Property                | Type                         | Description
------------------------ | ---------------------------- | -----------
-englishName             | string                       | Name of the country in English.
+Property        | Type                              | Description
+--------------- | --------------------------------- | -----------
+searchId        | string                            | Unique id of your search query.
+expiresAt       | string                            | UTC timestamp of when the offers in this response expire. After this time it is no longer possible to book them, you need to make a new search.
+passengersCount | integer                           | The count of passengers this search query was for.
+currency        | string                            | Currency used for all prices in this response.
+options         | list of [TripOption](#tripoption) | List of options for this trip.
 
 ### Error status codes
 
@@ -541,7 +454,7 @@ curl -d '{ "optionId": "1d32109f-c2e2-44fe-b2cf-461ef3730541", "selectedStops": 
             "type":"sedan",
             "maxPassengers":3,
             "description":"Sedan comparable to a Volkswagen Passat, up to 3 passengers with luggage.",
-            "image":"image link"
+            "image":"https://daytrip.imgix.net/vehicles/sedan.png"
          },
          "luggage":{
             "maxTotalCarryons":3,
@@ -655,7 +568,7 @@ Status code | Description
 > To book the customized trip option with stops from the example above or to book a trip option from the original Search endpoint response for two adults and one child with a booster seat, use the following call:
 
 ```bash
-curl -d '{ "optionId": "f0e34a1b-2b3d-4747-b426-292633b615b4", "pickupAddress": "Havel airport", "dropoffAddress": "Vienna central square", "customerNote": "We will stand next to the entrance", "flightNumber": "FR008",	"passengerDetails": [ { 			"type": "lead", "firstName": "John", "lastName": "Doe", "phone": "+41555555555", "email": "client-email@example.com", 			"birthday": 629424000 }, { "type": "adult" }, { "type": "child", "childSeatType": "Booster" } ] }' -H "Content-Type: application/json" -H "x-api-key: your-api-key" -X POST https://api.mydaytrip.com/partners/v3/trip/book
+curl -d '{ "optionId": "f0e34a1b-2b3d-4747-b426-292633b615b4", "pickupAddressNote": "Havel airport", "dropoffAddressNote": "Vienna central square", "customerNote": "We will stand next to the entrance", "flightNumber": "FR008",	"passengerDetails": [ { 			"type": "lead", "firstName": "John", "lastName": "Doe", "phone": "+41555555555", "email": "client-email@example.com", 			"birthday": 629424000 }, { "type": "adult" }, { "type": "child", "childSeatType": "Booster" } ] }' -H "Content-Type: application/json" -H "x-api-key: your-api-key" -X POST https://api.mydaytrip.com/partners/v3/trip/book
 ```
 
 ```javascript
@@ -678,26 +591,14 @@ This endpoint is used to book a trip option. Any trip option from Search or Cust
 
 ### Request body
 
-Property         | Type                         | Description
----------------- | ---------------------------- | -----------
-optionId         | string                       | Id of the option you want to book. Taken from Search or Customize endpoint response.
-pickupAddress    | string                       | Optional note for the driver with details about the pick up location.
-dropoffAddress   | string                       | Optional note for the driver with details about the drop off location.
-customerNote     | string                       | Optional note for the driver not related to pick up or drop off.
-flightNumber     | string                       | Optional flight number in case this is an airport pick up.
-passengerDetails | list of PassengerDetail      | List of passengers that will go on this trip. The number of passengers must match the `passengersCount` query parameter from the Search endpoint. There must be at least one passenger of type "Lead" with contact details filled. For passenger of type "Child" you can request a child seat of proper type if this is a private trip.
-
-### PassengerDetail
-
-Property         | Type                         | Description
----------------- | ---------------------------- | -----------
-type             | string                       | Type of the passenger. "Lead", "Adult" or "Child"
-firstName        | string                       | First name of the passenger - required the for lead passenger.
-lastName         | string                       | Last name of the passenger - required for the lead passenger.
-phone            | string                       | Phone number of the passenger - required for the lead passenger. Include country prefix.
-email            | string                       | Email of the passenger - required for the lead passenger.
-birthday         | integer                      | Birthday of the passenger - required for the lead passenger. Unix epoch timestamp in seconds.
-childSeatType    | string                       | Requested child seat type for a passenger of type "Child". Must match one of offered child seat types from `availableChildSeatTypes` of the trip option you are booking.
+Property           | Type                                        | Description
+------------------ | ------------------------------------------- | -----------
+optionId           | string                                      | Id of the option you want to book. Taken from Search or Customize endpoint response.
+pickupAddressNote  | string                                      | Optional note for the driver with details about the pick up location.
+dropoffAddressNote | string                                      | Optional note for the driver with details about the drop off location.
+customerNote       | string                                      | Optional note for the driver not related to pick up or drop off.
+flightNumber       | string                                      | Optional flight number in case this is an airport pick up.
+passengerDetails   | list of [PassengerDetail](#passengerdetail) | List of passengers that will go on this trip. The number of passengers must match the `passengersCount` query parameter from the Search endpoint. There must be at least one passenger of type "Lead" with contact details filled. For passenger of type "Child" you can request a child seat of proper type if this is a private trip.
 
 ### Error status codes
 
@@ -742,3 +643,195 @@ Status code | Description
 401         | API key missing or invalid.
 403         | Forbidden request - trying to cancel a booking owned by someone else or the departure is too soon.
 404         | Booking not found.
+
+## Details
+
+> To get details of a booked trip, use the following call:
+
+```bash
+curl https://api.mydaytrip.com/partners/v3/trip/details/bookingId -H "x-api-key: your-api-key" 
+```
+
+```javascript
+
+```
+
+```python
+
+```
+
+> Make sure to replace `bookingId` with the real booking id.
+
+> The above call returns JSON structured like this:
+
+```json
+{
+   "status": "Confirmed",
+   "type": "Private",
+   "passengersCount": 3,
+   "distanceKm":334,
+   "travelTimeMinutes":268,
+   "pickUp":{
+      "lat":50.10,
+      "lon":14.25,
+      "time":"2022-12-05T18:00:00Z"
+   },
+   "dropOff":{
+      "lat":48.20,
+      "lon":16.37
+   },
+   "pricing":{
+      "totalPrice":288
+   },
+   "vehicle":{
+      "type":"sedan",
+      "maxPassengers":3,
+      "description":"Sedan comparable to a Volkswagen Passat, up to 3 passengers with luggage.",
+      "image":"https://daytrip.imgix.net/vehicles/sedan.png"
+   },
+   "luggage":{
+      "maxTotalCarryons":3,
+      "maxTotalSuitcases":3
+   },
+   "includedStops":[
+      {
+         "id":"4ee58c0c-4e56-46ef-bd22-406a1bc60e1c",
+         "price":28,
+         "name":"Mikulov",
+         "image":"https://daytrip.imgix.net/510.jpg",
+         "title":"The Heart of Czech Wine Country",
+         "perex":"A town with a history as deep and flavourful as its wine, Mikulov provides a perfect combination of relaxation and exploration.",
+         "description":"Often favoured by visitors with a more active approach to life, Mikulov has much to offer. Surrounded by idyllic countryside, crisscrossed by bicycle paths and marked hiking trails, and the nearby Nové Mlýny lakes, there is something for everyone to enjoy. After all that fresh air, a glass of wine will be more than welcome, and fortunately, Mikulov is the centre for Czech wine making. Due to a high concentration of limestone in the local soil, wine from this region has a unique character and distinct taste. If you like your wine with a side-serving of history, Mikulov Castle dates from the 1730s, and the Dietrichstein Tomb is the final resting place of a Bohemian noble family. Mikulov is also significant for its strong Jewish history. In the early 1800s Mikulov's Jewish Quarter was the largest in Moravia with half the town's inhabitants being of Jewish faith.",
+         "durationInMinutes":60,
+         "order":2,
+         "timezone":"Europe/Prague",
+         "country":{
+            "englishName":"Czech Republic"
+         }
+      }
+   ],
+   "pickupAddressNote": "Havel airport", 
+   "dropoffAddressNote": "Vienna central square", 
+   "customerNote": "We will stand next to the entrance", 
+   "flightNumber": "FR008",	
+   "passengerDetails": [ 
+      { 			
+         "type": "lead", 
+         "firstName": "John", 
+         "lastName": "Doe", 
+         "phone": "+41555555555", 
+         "email": "client-email@example.com", 			
+         "birthday": 629424000 
+      }, 
+      { 
+         "type": "adult" 
+      }, 
+      { 
+         "type": "child", "childSeatType": "Booster" 
+      } 
+   ]
+}
+```
+
+# Entities
+
+Below is a documentation of all object entities returned by Daytrip API endpoints.
+
+### TripOption
+
+Property                | Type                                    | Description
+----------------------- | --------------------------------------- | -----------
+id                      | string                                  | Unique id of the trip option. Used to customize or book this option.
+type                    | string                                  | Type of this option. "Private" or "Shared" (predefined shuttle trips).
+distanceKm              | number                                  | Length of the trip.
+travelTimeMinutes       | number                                  | Expected duration of the trip in minutes.
+pickUp                  | object - [Location](#location)          | Details about the pick up point.
+dropOff                 | object - [Location](#location)          | Details about the drop off point.
+pricing                 | object - [Pricing](#pricing)            | Details about the pricing.
+vehicle                 | object - [Vehicle](#vehicle)            | Details about the vehicle.
+luggage                 | object - [Luggage](#luggage)            | Details about the luggage.
+seatsAvailable          | integer                                 | Number of available seats in the shared shuttle. Optional.
+availableChildSeatTypes | list of [ChildSeatType](#childseattype) | List of available child seat types for this trip.
+possibleStops           | list of [Stop](#stop)                   | Stops that can be added to this trip option.
+includedStops           | list of [Stop](#stop)                   | Stops that are already included in this option.
+
+### Location
+
+Property                | Type                         | Description
+----------------------- | ---------------------------- | -----------
+lat                     | number                       | Latitude in degrees.
+lon                     | number                       | Longitude in degrees.
+time                    | string                       | UTC timestamp of the departure time. Optional, for pick up only.
+description             | string                       | Description of the pick up or drop off. Optional.
+
+### Pricing
+
+Property                | Type                         | Description
+----------------------- | ---------------------------- | -----------
+totalPrice              | number                       | Total price of this option based on requested passenger count.
+pricePerPassenger       | number                       | Price per passenger. Optional, for shared options only.
+
+### Vehicle
+
+Property                | Type                         | Description
+----------------------- | ---------------------------- | -----------
+type                    | string                       | Type of vehicle. "sedan", "mpv", "van", "luxury" or "shuttle"
+maxPassengers           | integer                      | Maximum number of passengers that can take a trip in this vehicle.
+description             | string                       | Description of the vehicle type, e.g. models that it is similar to.
+image                   | string                       | Link to an illustrative image of the vehicle type. Not an image of the exact vehicle.
+
+### Luggage
+
+Property                | Type                         | Description
+----------------------- | ---------------------------- | -----------
+maxTotalCarryons        | integer                      | Maximum amount of carry-on luggage that passengers can bring on this trip.
+maxTotalSuitcases       | integer                      | Maximum amount of suitcases that passengers can bring on this trip.
+maxCarryonsPerPerson    | integer                      | Maximum amount of carry-on luggage that one passenger can bring on this trip. Optional, for shared trips only.
+maxSuitcasesPerPerson   | integer                      | Maximum amount of suitcases that one passenger can bring on this trip. Optional, for shared trips only.
+
+### ChildSeatType
+
+Property                | Type                         | Description
+----------------------- | ---------------------------- | -----------
+childSeatType           | string                       | Type of the child seat. "RearFacing", "ForwardFacing", "BoosterSeat" or "Booster"
+description             | string                       | Description of the child seat type.
+ageFrom                 | integer                      | Minimum age in years of a child that this seat type is suitable for.
+ageTo                   | integer                      | Maximum age in years of a child that this seat type is suitable for.
+weightInPoundsFrom      | integer                      | Minimum weight in pounds of a child that this seat type is suitable for.
+weightInPoundsTo        | integer                      | Maximum weight in pounds of a child that this seat type is suitable for.
+weightInKilosFrom       | integer                      | Minimum weight in kilograms of a child that this seat type is suitable for.
+weightInKilosTo         | integer                      | Maximum weight in kilograms of a child that this seat type is suitable for.
+
+### Stop
+
+Property                | Type                         | Description
+----------------------- | ---------------------------- | -----------
+id                      | string                       | Id of the stop. Used for adding stops to a trip option.
+price                   | string                       | Price of the stop. If the stop is in `includedStops` then this price is already part of `totalPrice` under `pricing` of the [TripOption](#tripoption).
+name                    | string                       | Name of the stop.
+image                   | string                       | Link to the image of the stop.
+title                   | string                       | Title of the stop description.
+perex                   | string                       | Perex of the stop description.
+description             | string                       | The stop description.
+durationInMinutes       | integer                      | Expected duration of the stop.
+order                   | integer                      | Order of this stop on this trip.
+timezone                | string                       | Name of the timezone matching the location of the stop.
+country                 | object - [Country](#country) | Details about the country where the stop is located.
+
+### Country
+
+Property                | Type                         | Description
+----------------------- | ---------------------------- | -----------
+englishName             | string                       | Name of the country in English.
+
+### PassengerDetail
+
+Property         | Type                         | Description
+---------------- | ---------------------------- | -----------
+type             | string                       | Type of the passenger. "Lead", "Adult" or "Child"
+firstName        | string                       | First name of the passenger - required the for lead passenger.
+lastName         | string                       | Last name of the passenger - required for the lead passenger.
+phone            | string                       | Phone number of the passenger - required for the lead passenger. Include country prefix.
+email            | string                       | Email of the passenger - required for the lead passenger.
+birthday         | integer                      | Birthday of the passenger - required for the lead passenger. Unix epoch timestamp in seconds.
+childSeatType    | string                       | Requested child seat type for a passenger of type "Child". Must match one of offered child seat types from `availableChildSeatTypes` of the trip option you are booking.
