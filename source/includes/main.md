@@ -737,7 +737,7 @@ curl https://api.mydaytrip.com/partners/v3/trip/details/bookingId -H "x-api-key:
 
 Below is a documentation of all object entities returned by Daytrip API endpoints.
 
-### TripOption
+## TripOption
 
 Property                | Type                                    | Description
 ----------------------- | --------------------------------------- | -----------
@@ -755,7 +755,7 @@ availableChildSeatTypes | list of [ChildSeatType](#childseattype) | List of avai
 possibleStops           | list of [Stop](#stop)                   | Stops that can be added to this trip option.
 includedStops           | list of [Stop](#stop)                   | Stops that are already included in this option.
 
-### Location
+## Location
 
 Property                | Type                         | Description
 ----------------------- | ---------------------------- | -----------
@@ -764,14 +764,14 @@ lon                     | number                       | Longitude in degrees.
 time                    | string                       | UTC timestamp of the departure time. Optional, for pick up only.
 description             | string                       | Description of the pick up or drop off. Optional.
 
-### Pricing
+## Pricing
 
 Property                | Type                         | Description
 ----------------------- | ---------------------------- | -----------
 totalPrice              | number                       | Total price of this option based on requested passenger count.
 pricePerPassenger       | number                       | Price per passenger. Optional, for shared options only.
 
-### Vehicle
+## Vehicle
 
 Property                | Type                         | Description
 ----------------------- | ---------------------------- | -----------
@@ -780,7 +780,7 @@ maxPassengers           | integer                      | Maximum number of passe
 description             | string                       | Description of the vehicle type, e.g. models that it is similar to.
 image                   | string                       | Link to an illustrative image of the vehicle type. Not an image of the exact vehicle.
 
-### Luggage
+## Luggage
 
 Property                | Type                         | Description
 ----------------------- | ---------------------------- | -----------
@@ -789,7 +789,7 @@ maxTotalSuitcases       | integer                      | Maximum amount of suitc
 maxCarryonsPerPerson    | integer                      | Maximum amount of carry-on luggage that one passenger can bring on this trip. Optional, for shared trips only.
 maxSuitcasesPerPerson   | integer                      | Maximum amount of suitcases that one passenger can bring on this trip. Optional, for shared trips only.
 
-### ChildSeatType
+## ChildSeatType
 
 Property                | Type                         | Description
 ----------------------- | ---------------------------- | -----------
@@ -802,7 +802,7 @@ weightInPoundsTo        | integer                      | Maximum weight in pound
 weightInKilosFrom       | integer                      | Minimum weight in kilograms of a child that this seat type is suitable for.
 weightInKilosTo         | integer                      | Maximum weight in kilograms of a child that this seat type is suitable for.
 
-### Stop
+## Stop
 
 Property                | Type                         | Description
 ----------------------- | ---------------------------- | -----------
@@ -818,13 +818,13 @@ order                   | integer                      | Order of this stop on t
 timezone                | string                       | Name of the timezone matching the location of the stop.
 country                 | object - [Country](#country) | Details about the country where the stop is located.
 
-### Country
+## Country
 
 Property                | Type                         | Description
 ----------------------- | ---------------------------- | -----------
 englishName             | string                       | Name of the country in English.
 
-### PassengerDetail
+## PassengerDetail
 
 Property         | Type                         | Description
 ---------------- | ---------------------------- | -----------
