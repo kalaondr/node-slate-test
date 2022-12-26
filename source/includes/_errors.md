@@ -4,11 +4,9 @@ Daytrip uses conventional HTTP response codes to indicate the success or failure
 
 HTTP Code | Meaning
 ---------- | -------
-400        | Bad Request -- The request could not be understood by the server due to malformed syntax.
-401        | Unauthorized -- API key is missing or invalid.
-403        | Forbidden -- The requested operation is forbidden.
-404        | Not Found -- No trips found, trip option not found, booking not found.
-405        | Method Not Allowed -- Invalid HTTP method for given endpoint.
-406        | Not Acceptable -- You requested a format that isn't JSON.
-500        | Internal Server Error -- We had a problem with our server. Please retry your request.
-503        | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
+400        | Bad Request - Missing mandatory parameters, wrong types of parameters or not a valid json.
+401        | Unauthorized - API key is missing or invalid.
+403        | Forbidden - The requested operation is forbidden.
+404        | Not Found - No trips found, trip option not found, booking not found, endpoint does not exist.
+500        | Internal Server Error - We had a problem with our server. Please retry your request.
+503        | Service Unavailable - We had a problem with our server. Please retry your request.
