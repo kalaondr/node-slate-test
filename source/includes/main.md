@@ -760,6 +760,14 @@ customerNote       | string                                      | Optional note
 flightNumber       | string                                      | Optional flight number in case this is an airport pick up.
 passengerDetails   | list of [PassengerDetail](#passengerdetail) | List of passengers that will go on this trip. The number of passengers must match the `passengersCount` query parameter from the Search endpoint. There must be at least one passenger of type "Lead" with contact details filled. For passenger of type "Child" you can request a child seat of proper type if this is a private trip.
 
+### Error status codes
+
+Status code | Description
+----------- | -----------
+401         | API key missing or invalid.
+403         | Forbidden request - trying to get details of a booking owned by someone else.
+404         | Booking not found.
+
 # Entities
 
 Below is a documentation of all object entities returned by Daytrip API endpoints.
