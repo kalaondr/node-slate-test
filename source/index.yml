@@ -6,9 +6,11 @@ language_tabs:
    - javascript
 
 includes:
-   - main
-   - _errors
-   - _environments
+   - introduction
+   - environments
+   - authentication
+   - errors
+   - trip-api
 
 search: true
 

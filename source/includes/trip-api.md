@@ -1,32 +1,3 @@
-# Introduction
-
-The Daytrip API is organized around REST. Our API accepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes and verbs.
-
-The API can be used to search for trip options, customize a trip with stops, book a trip or cancel a booking.
-
-# Authentication
-
-> To authorize your requests, add the `x-api-key` header like this:
-
-```bash
-curl "https://api.staging.mydaytrip.net/partners/v3/trip/search"
-  -H "x-api-key: your-api-key"
-```
-
-```javascript
-
-```
-
-```python
-
-```
-
-> Make sure to replace `your-api-key` with your API key.
-
-Daytrip API uses API keys to allow access to the API. The API key needs to be included in `x-api-key` header with each API request.
-
-Your API key carries many privileges, so be sure to keep it secure! Do not share your secret API key in publicly accessible areas such as GitHub, client-side code, and so forth.
-
 # Trip API
 
 A trip is a representation of passenger transportation from point A to point B. Each search will usually return multiple trip options that can be booked. Options can differ by vehicle type or by being private or shared with other travelers. Shared trips have predefined pick up and drop off points and departure times. For private trips pick up and drop off points as well as departure time are matching the search request. Private trips can also be customized by adding stops if available.
