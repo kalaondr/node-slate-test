@@ -34,9 +34,9 @@
          <div class=content>
             <h1 id="introduction">Introduction</h1>
             <p>The Daytrip API is organized around REST. Our API accepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes and verbs.</p>
-            <p>The API can be used to search for trip options, customize a trip with stops, book a trip or cancel a booking.</p>
+            <p>The API can be used to search for trip options, customize a trip with stops, book a trip, get details about a booking or cancel a booking.</p>
             <h1 id="environments">Environments</h1>
-            <p>Daytrip offers a sandbox environment where you can test your integration with the API without creating real bookings. All the code examples provided are using this sandbox environment. Each environment requires a different API key. When your integration is ready and tested against the sandbox environment, you can request an API key for the production environment.</p>
+            <p>Daytrip offers a sandbox environment where you can test your integration with the API without creating real bookings. All the code examples provided in this documentation are using this sandbox environment. Each environment requires a different API key. When your integration is ready and tested against the sandbox environment, you can request an API key for the production environment.</p>
             <h2 id="urls">URLs</h2>
             <table>
                <thead>
@@ -65,10 +65,10 @@
             <blockquote>
                <p>Make sure to replace <code>your-api-key</code> with your API key.</p>
             </blockquote>
-            <p>Daytrip API uses API keys to allow access to the API. The API key needs to be included in <code>x-api-key</code> header with each API request.</p>
+            <p>Daytrip API uses API keys to allow access to the API. The API key needs to be included in the <code>x-api-key</code> header with each API request.</p>
             <p>Your API key carries many privileges, so be sure to keep it secure! Do not share your secret API key in publicly accessible areas such as GitHub, client-side code, and so forth.</p>
             <h1 id="errors">Errors</h1>
-            <p>Daytrip uses conventional HTTP response codes to indicate the success or failure of an API request. In general: Codes in the 2xx range indicate success. Codes in the 4xx range indicate an error that failed given the information provided (e.g., a required parameter was omitted, no trip was found for given parameters, etc.). Codes in the 5xx range indicate an error with Daytrip&#39;s servers (these are rare).</p>
+            <p>Daytrip uses conventional HTTP response codes to indicate the success or failure of an API request. In general: codes in the 2xx range indicate success. Codes in the 4xx range indicate an error that failed given the information provided (e.g., a required parameter was omitted, no trip was found for given parameters, etc.). Codes in the 5xx range indicate an error with Daytrip&#39;s servers (these are rare).</p>
             <table>
                <thead>
                   <tr>
@@ -95,11 +95,11 @@
                   </tr>
                   <tr>
                      <td>500</td>
-                     <td>Internal Server Error - We had a problem with our server. Please retry your request.</td>
+                     <td>Internal Server Error - We had a problem with our service. Please retry your request.</td>
                   </tr>
                   <tr>
                      <td>503</td>
-                     <td>Service Unavailable - We had a problem with our server. Please retry your request.</td>
+                     <td>Service Unavailable - We had a problem with our service. Please retry your request.</td>
                   </tr>
                </tbody>
             </table>
