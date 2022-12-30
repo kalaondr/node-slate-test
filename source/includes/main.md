@@ -9,7 +9,7 @@ The API can be used to search for trip options, customize a trip with stops, boo
 > To authorize your requests, add the `x-api-key` header like this:
 
 ```bash
-curl "https://api.mydaytrip.com/partners/v3/trip/search"
+curl "https://api.staging.mydaytrip.net/partners/v3/trip/search"
   -H "x-api-key: your-api-key"
 ```
 
@@ -47,7 +47,7 @@ A flow with adding stops would look like this:
 > To search for a trip from Prague to Vienna for three passengers, use this call:
 
 ```bash
-curl "https://api.mydaytrip.com/partners/v3/trip/search?originLongitude=14.2559&originLatitude=50.10&destinationLongitude=16.3738&destinationLatitude=48.2082&departureTime=1766227088&passengersCount=3"
+curl "https://api.staging.mydaytrip.net/partners/v3/trip/search?originLongitude=14.2559&originLatitude=50.10&destinationLongitude=16.3738&destinationLatitude=48.2082&departureTime=1766227088&passengersCount=3"
   -H "x-api-key: your-api-key"
 ```
 
@@ -377,7 +377,7 @@ This endpoint returns all trip options for given origin, destination, departure 
 
 ### HTTP Request
 
-`GET https://api.mydaytrip.com/partners/v3/trip/search`
+`GET https://api.staging.mydaytrip.net/partners/v3/trip/search`
 
 ### Query Parameters
 
@@ -413,7 +413,7 @@ Status code | Description
 > To add the Mikulov stop to the sedan vehicle type private trip option from the Search endpoint example above, use the following call:
 
 ```bash
-curl -d '{ "optionId": "1d32109f-c2e2-44fe-b2cf-461ef3730541", "selectedStops": ["4ee58c0c-4e56-46ef-bd22-406a1bc60e1c"] }' -H "Content-Type: application/json" -H "x-api-key: your-api-key" -X POST https://api.mydaytrip.com/partners/v3/trip/search/customize
+curl -d '{ "optionId": "1d32109f-c2e2-44fe-b2cf-461ef3730541", "selectedStops": ["4ee58c0c-4e56-46ef-bd22-406a1bc60e1c"] }' -H "Content-Type: application/json" -H "x-api-key: your-api-key" -X POST https://api.staging.mydaytrip.net/partners/v3/trip/search/customize
 ```
 
 ```javascript
@@ -568,7 +568,7 @@ Status code | Description
 > To book the customized trip option with stops from the example above or to book a trip option from the original Search endpoint response for two adults and one child with a booster seat, use the following call:
 
 ```bash
-curl -d '{ "optionId": "f0e34a1b-2b3d-4747-b426-292633b615b4", "pickupAddressNote": "Havel airport", "dropoffAddressNote": "Vienna central square", "customerNote": "We will stand next to the entrance", "flightNumber": "FR008",	"passengerDetails": [ { 			"type": "lead", "firstName": "John", "lastName": "Doe", "phone": "+41555555555", "email": "client-email@example.com", 			"birthday": 629424000 }, { "type": "adult" }, { "type": "child", "childSeatType": "Booster" } ] }' -H "Content-Type: application/json" -H "x-api-key: your-api-key" -X POST https://api.mydaytrip.com/partners/v3/trip/book
+curl -d '{ "optionId": "f0e34a1b-2b3d-4747-b426-292633b615b4", "pickupAddressNote": "Havel airport", "dropoffAddressNote": "Vienna central square", "customerNote": "We will stand next to the entrance", "flightNumber": "FR008",	"passengerDetails": [ { 			"type": "lead", "firstName": "John", "lastName": "Doe", "phone": "+41555555555", "email": "client-email@example.com", 			"birthday": 629424000 }, { "type": "adult" }, { "type": "child", "childSeatType": "Booster" } ] }' -H "Content-Type: application/json" -H "x-api-key: your-api-key" -X POST https://api.staging.mydaytrip.net/partners/v3/trip/book
 ```
 
 ```javascript
@@ -614,7 +614,7 @@ Status code | Description
 > To cancel a booked trip, use the following call:
 
 ```bash
-curl -d '{ "bookingId": "cb102778-a3d7-426e-8d18-6bd6b296f283" }' -H "Content-Type: application/json" -H "x-api-key: your-api-key" -X POST https://api.mydaytrip.com/partners/v3/trip/cancel
+curl -d '{ "bookingId": "cb102778-a3d7-426e-8d18-6bd6b296f283" }' -H "Content-Type: application/json" -H "x-api-key: your-api-key" -X POST https://api.staging.mydaytrip.net/partners/v3/trip/cancel
 ```
 
 ```javascript
@@ -649,7 +649,7 @@ Status code | Description
 > To get details of a booked trip, use the following call:
 
 ```bash
-curl https://api.mydaytrip.com/partners/v3/trip/details/bookingId -H "x-api-key: your-api-key" 
+curl https://api.staging.mydaytrip.net/partners/v3/trip/details/bookingId -H "x-api-key: your-api-key" 
 ```
 
 ```javascript
@@ -741,7 +741,7 @@ This endpoint returns details of a booked trip. It provides the status of the bo
 
 ### HTTP Request
 
-`GET https://api.mydaytrip.com/partners/v3/trip/details/bookingId`
+`GET https://api.staging.mydaytrip.net/partners/v3/trip/details/bookingId`
 
 Replace `bookingId` with id of the booking you want to retrieve details for.
 
