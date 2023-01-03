@@ -41,7 +41,7 @@
             <h3 id="technical">Technical</h3>
             <p>If you have technical questions about the integration, contact us at TODO_EMAIL_SUPPORT.</p>
             <h3 id="customer-support-emergency">Customer support emergency</h3>
-            <p>To solve problems with bookings created via the API you can contact <a href="mailto:&#x64;&#97;&#121;&#116;&#x72;&#105;&#x70;&#64;&#109;&#121;&#100;&#x61;&#121;&#x74;&#x72;&#105;&#x70;&#x2e;&#99;&#111;&#109;">&#x64;&#97;&#121;&#116;&#x72;&#105;&#x70;&#64;&#109;&#121;&#100;&#x61;&#121;&#x74;&#x72;&#105;&#x70;&#x2e;&#99;&#111;&#109;</a> or call <a href="tel:+442033181119">+44 20 3318 1119</a>.</p>
+            <p>To solve problems with bookings created via the API you can contact <a href="mailto:&#x64;&#97;&#x79;&#x74;&#x72;&#105;&#112;&#64;&#x6d;&#x79;&#100;&#97;&#121;&#116;&#114;&#x69;&#112;&#46;&#99;&#111;&#x6d;">&#x64;&#97;&#x79;&#x74;&#x72;&#105;&#112;&#64;&#x6d;&#x79;&#100;&#97;&#121;&#116;&#114;&#x69;&#112;&#46;&#99;&#111;&#x6d;</a> or call <a href="tel:+442033181119">+44 20 3318 1119</a>.</p>
             <h1 id="environments">Environments</h1>
             <p>Daytrip offers a sandbox environment where you can test your integration with the API without creating real bookings. All the code examples provided in this documentation are using this sandbox environment. Each environment requires a different API key. When your integration is ready and tested against the sandbox environment, you can request an API key for the production environment.</p>
             <h2 id="urls">URLs</h2>
@@ -463,8 +463,8 @@
    <span class="hljs-punctuation">]</span>
 <span class="hljs-punctuation">}</span></code></pre>
             <p>This endpoint returns all trip options for given origin, destination, departure time and passenger count. Origin and destination are passed as latitude and longitude coordinates. The unit used is degree with decimal places, for example <code>39.753657, -117.610215</code>. Departure time is passed as a UNIX epoch timestamp in seconds, like <code>1679463169</code>.</p>
-            <h3 id="http-request">HTTP Request</h3>
-            <p><code>GET https://api.staging.mydaytrip.net/partners/v3/trip/search</code></p>
+            <h3 id="url-path">URL path</h3>
+            <p><code>/partners/v3/trip/search</code></p>
             <h3 id="query-parameters">Query Parameters</h3>
             <table>
                <thead>
@@ -688,6 +688,8 @@
    <span class="hljs-punctuation">]</span>
 <span class="hljs-punctuation">}</span></code></pre>
             <p>This endpoint is used to customize a trip option returned by the Search endpoint. The result is a new trip option with a new id that can be booked or customized again. The format of the response body is the same as for the Search endpoint. Currently the only supported customization operation is selection of stops for private trips. Selected stops will appear in <code>includedStops</code> of the returned option. In case of repeated calls, previously selected stops will be replaced, so if you selected one stop and want to change it to two stops, you need to send both stops in <code>selectedStops</code>. <code>totalPrice</code> and <code>travelTimeMinutes</code> will be automatically updated to reflect the selected stops.</p>
+            <h3 id="url-path-1">URL path</h3>
+            <p><code>/partners/v3/trip/search/customize</code></p>
             <h3 id="request-body">Request body</h3>
             <table>
                <thead>
@@ -751,6 +753,8 @@
    <span class="hljs-attr">&quot;bookingId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;cb102778-a3d7-426e-8d18-6bd6b296f283&quot;</span>  
 <span class="hljs-punctuation">}</span></code></pre>
             <p>This endpoint is used to book a trip option. Any trip option from Search or Customize endpoint response can be booked if the search results have not expired yet (see <code>expiresAt</code> property). You need to send id of the chosen option and passenger details to this endpoint. The result is a booking id that can be used to cancel the booking if not too close to departure.</p>
+            <h3 id="url-path-2">URL path</h3>
+            <p><code>/partners/v3/trip/book</code></p>
             <h3 id="request-body-1">Request body</h3>
             <table>
                <thead>
@@ -829,6 +833,8 @@
                <p>The above call returns 204 No Content success HTTP status code.</p>
             </blockquote>
             <p>This endpoint is used to cancel a booked trip. Only trips that have departure in more than 24 hours can be cancelled currently - this is a subject to change at any time.</p>
+            <h3 id="url-path-3">URL path</h3>
+            <p><code>/partners/v3/trip/cancel</code></p>
             <h3 id="request-body-2">Request body</h3>
             <table>
                <thead>
@@ -955,9 +961,9 @@
    <span class="hljs-punctuation">]</span>   
 <span class="hljs-punctuation">}</span></code></pre>
             <p>This endpoint returns details of a booked trip. It provides the status of the booking, information about the trip option and the data that were provided when booking the trip.</p>
-            <h3 id="http-request-1">HTTP Request</h3>
-            <p><code>GET https://api.staging.mydaytrip.net/partners/v3/trip/details/bookingId</code></p>
-            <p>Replace <code>bookingId</code> with id of the booking you want to retrieve details for.</p>
+            <h3 id="url-path-4">URL path</h3>
+            <p><code>/partners/v3/trip/details/bookingId</code></p>
+            <p>Replace <code>bookingId</code> with the id of the booking you want to retrieve details for.</p>
             <h3 id="response-body-2">Response body</h3>
             <table>
                <thead>

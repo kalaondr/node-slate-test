@@ -370,9 +370,9 @@ curl "https://api.staging.mydaytrip.net/partners/v3/trip/search?originLongitude=
 
 This endpoint returns all trip options for given origin, destination, departure time and passenger count. Origin and destination are passed as latitude and longitude coordinates. The unit used is degree with decimal places, for example `39.753657, -117.610215`. Departure time is passed as a UNIX epoch timestamp in seconds, like `1679463169`.
 
-### HTTP Request
+### URL path
 
-`GET https://api.staging.mydaytrip.net/partners/v3/trip/search`
+`/partners/v3/trip/search`
 
 ### Query Parameters
 
@@ -538,6 +538,10 @@ curl -d '{ "optionId": "1d32109f-c2e2-44fe-b2cf-461ef3730541", "selectedStops": 
 
 This endpoint is used to customize a trip option returned by the Search endpoint. The result is a new trip option with a new id that can be booked or customized again. The format of the response body is the same as for the Search endpoint. Currently the only supported customization operation is selection of stops for private trips. Selected stops will appear in `includedStops` of the returned option. In case of repeated calls, previously selected stops will be replaced, so if you selected one stop and want to change it to two stops, you need to send both stops in `selectedStops`. `totalPrice` and `travelTimeMinutes` will be automatically updated to reflect the selected stops.
 
+### URL path
+
+`/partners/v3/trip/search/customize`
+
 ### Request body
 
 Property        | Type                         | Description
@@ -584,6 +588,10 @@ curl -d '{ "optionId": "f0e34a1b-2b3d-4747-b426-292633b615b4", "pickupAddressNot
 
 This endpoint is used to book a trip option. Any trip option from Search or Customize endpoint response can be booked if the search results have not expired yet (see `expiresAt` property). You need to send id of the chosen option and passenger details to this endpoint. The result is a booking id that can be used to cancel the booking if not too close to departure.
 
+### URL path
+
+`/partners/v3/trip/book`
+
 ### Request body
 
 Property           | Type                                        | Description
@@ -623,6 +631,10 @@ curl -d '{ "bookingId": "cb102778-a3d7-426e-8d18-6bd6b296f283" }' -H "Content-Ty
 > The above call returns 204 No Content success HTTP status code.
 
 This endpoint is used to cancel a booked trip. Only trips that have departure in more than 24 hours can be cancelled currently - this is a subject to change at any time.
+
+### URL path
+
+`/partners/v3/trip/cancel`
 
 ### Request body
 
@@ -734,11 +746,11 @@ curl https://api.staging.mydaytrip.net/partners/v3/trip/details/bookingId -H "x-
 
 This endpoint returns details of a booked trip. It provides the status of the booking, information about the trip option and the data that were provided when booking the trip.
 
-### HTTP Request
+### URL path
 
-`GET https://api.staging.mydaytrip.net/partners/v3/trip/details/bookingId`
+`/partners/v3/trip/details/bookingId`
 
-Replace `bookingId` with id of the booking you want to retrieve details for.
+Replace `bookingId` with the id of the booking you want to retrieve details for.
 
 ### Response body
 
