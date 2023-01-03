@@ -2,18 +2,42 @@
 
 A trip is a representation of passenger transportation from point A to point B. Each search will usually return multiple trip options that can be booked. Options can differ by vehicle type or by being private or shared with other travelers. Shared trips have predefined pick up and drop off points and departure times. For private trips pick up and drop off points as well as departure time are matching the search request. Private trips can also be customized by adding stops if available.
 
-Trip API can be used to search for trip options, customizing an option with stops and then booking the option. A typical simple flow without stop customization would look like this:
+## Flows
 
-1. call /search endpoint to get possible options
-2. call /book endpoint to book the chosen option
+Trip API can be used to search for trip options, customizing an option with stops and then booking the option. 
+
+### Simple trip
+
+A typical simple flow without stop customization would look like this:
+
+1. call [/search](#search-endpoint) endpoint to get possible options
+2. call [/book](#book-endpoint) endpoint to book the chosen option
+3. `optional` - call [/details](#details-endpoint) endpoint to get trip and booking details
+
+### Trip with a stop
 
 A flow with adding stops would look like this:
 
-1. call /search endpoint to get possible options
-2. call /customize endpoint to add stops to the chosen option
-3. call /book endpoint to book the customized option
+1. call [/search](#search-endpoint) endpoint to get possible options
+2. call [/customize](#customize-endpoint) endpoint to add stops to the chosen option
+3. call [/book](#book-endpoint) endpoint to book the customized option
+4. `optional` - call [/details](#details-endpoint) endpoint to get trip and booking details
 
-## Search
+### Cancelling a trip
+
+A flow to book a trip, get details about it and then cancel it would look like this:
+
+1. call [/search](#search-endpoint) endpoint to get possible options
+2. call [/book](#book-endpoint) endpoint to book the chosen option
+3. `optional` - call [/details](#details-endpoint) endpoint to get trip and booking details
+4. call [/cancel](#cancel-endpoint) endpoint to cancel the booking
+5. `optional` - call [/details](#details-endpoint) endpoint to get trip and booking details (status should be "Cancelled")
+
+### Updates
+
+If you want to make pick up, drop off, passenger count or departure time changes to the booking you need to cancel it and create it again. For small adjustments like changing passenger phone number or email please contact our [support](#contacts).
+
+## Search endpoint
 
 > To search for a trip from Prague to Vienna for three passengers, use this call:
 
@@ -379,7 +403,7 @@ Status code | Description
 401         | API key missing or invalid.
 404         | No trip options found for given request.
 
-## Customize
+## Customize endpoint
 
 > To add the Mikulov stop to the sedan vehicle type private trip option from the Search endpoint example above, use the following call:
 
@@ -534,7 +558,7 @@ Status code | Description
 403         | Forbidden request - trying to customize a trip option owned by someone else.
 404         | Trip option not found or expired. Stop not found.
 
-## Book
+## Book endpoint
 
 > To book the customized trip option with stops from the example above or to book a trip option from the original Search endpoint response for two adults and one child with a booster seat, use the following call:
 
@@ -580,7 +604,7 @@ Status code | Description
 403         | Forbidden request - trying to book a trip option owned by someone else.
 404         | Trip option not found or expired.
 
-## Cancel
+## Cancel endpoint
 
 > To cancel a booked trip, use the following call:
 
@@ -615,7 +639,7 @@ Status code | Description
 403         | Forbidden request - trying to cancel a booking owned by someone else or the departure is too soon.
 404         | Booking not found.
 
-## Details
+## Details endpoint
 
 > To get details of a booked trip, use the following call:
 
