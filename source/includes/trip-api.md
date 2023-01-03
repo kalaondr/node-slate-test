@@ -741,7 +741,7 @@ Status code | Description
 
 # Entities
 
-Below is a documentation of all object entities returned by Daytrip API endpoints.
+Below is a documentation of all object entities returned by the Daytrip API endpoints.
 
 ## TripOption
 

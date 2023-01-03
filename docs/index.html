@@ -36,7 +36,12 @@
             <p>The Daytrip API is organized around REST. Our API accepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes and verbs.</p>
             <p>The API can be used to search for trip options, customize a trip with stops, book a trip, get details about a booking or cancel a booking.</p>
             <h2 id="contacts">Contacts</h2>
-            <p>If you want to integrate with our API, contact us at TODO_EMAIL_ONBOARDING to get a partner account and an API key. If you have technical questions about the integration, contact us at TODO_EMAIL_SUPPORT</p>
+            <h3 id="onboarding">Onboarding</h3>
+            <p>If you want to integrate with our API, contact us at TODO_EMAIL_ONBOARDING to get a partner account and an API key. </p>
+            <h3 id="technical">Technical</h3>
+            <p>If you have technical questions about the integration, contact us at TODO_EMAIL_SUPPORT.</p>
+            <h3 id="customer-support-emergency">Customer support emergency</h3>
+            <p>To solve problems with bookings created via the API you can contact <a href="mailto:&#100;&#x61;&#x79;&#x74;&#x72;&#x69;&#112;&#x40;&#x6d;&#121;&#100;&#97;&#x79;&#116;&#114;&#x69;&#112;&#x2e;&#99;&#x6f;&#109;">&#100;&#x61;&#x79;&#x74;&#x72;&#x69;&#112;&#x40;&#x6d;&#121;&#100;&#97;&#x79;&#116;&#114;&#x69;&#112;&#x2e;&#99;&#x6f;&#109;</a> or call <a href="tel:+442033181119">+44 20 3318 1119</a>.</p>
             <h1 id="environments">Environments</h1>
             <p>Daytrip offers a sandbox environment where you can test your integration with the API without creating real bookings. All the code examples provided in this documentation are using this sandbox environment. Each environment requires a different API key. When your integration is ready and tested against the sandbox environment, you can request an API key for the production environment.</p>
             <h2 id="urls">URLs</h2>
@@ -105,6 +110,10 @@
                   </tr>
                </tbody>
             </table>
+            <h1 id="debugging">Debugging</h1>
+            <p>Every response from the Daytrip APi contains a <code>x-correlation-id</code> header with a unique identifier of the HTTP call. If you send us this identifier, we can give you more detailed info about what went wrong with your call.</p>
+            <p>If you are using correlation ids on your side as well, you can send us <code>x-correlation-id</code> header with your requests and we will use your own correlation id value.</p>
+            <p><a href="https://microsoft.github.io/code-with-engineering-playbook/observability/correlation-id/">About correlation ids</a></p>
             <h1 id="trip-api">Trip API</h1>
             <p>A trip is a representation of passenger transportation from point A to point B. Each search will usually return multiple trip options that can be booked. Options can differ by vehicle type or by being private or shared with other travelers. Shared trips have predefined pick up and drop off points and departure times. For private trips pick up and drop off points as well as departure time are matching the search request. Private trips can also be customized by adding stops if available.</p>
             <p>Trip API can be used to search for trip options, customizing an option with stops and then booking the option. A typical simple flow without stop customization would look like this:</p>
@@ -1018,7 +1027,7 @@
                </tbody>
             </table>
             <h1 id="entities">Entities</h1>
-            <p>Below is a documentation of all object entities returned by Daytrip API endpoints.</p>
+            <p>Below is a documentation of all object entities returned by the Daytrip API endpoints.</p>
             <h2 id="tripoption">TripOption</h2>
             <table>
                <thead>

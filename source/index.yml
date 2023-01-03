@@ -10,6 +10,7 @@ includes:
    - environments
    - authentication
    - errors
+   - debugging
    - trip-api
 
 search: true
