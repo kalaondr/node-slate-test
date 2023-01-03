@@ -41,7 +41,7 @@
             <h3 id="technical">Technical</h3>
             <p>If you have technical questions about the integration, contact us at TODO_EMAIL_SUPPORT.</p>
             <h3 id="customer-support-emergency">Customer support emergency</h3>
-            <p>To solve problems with bookings created via the API you can contact <a href="mailto:&#x64;&#97;&#x79;&#x74;&#x72;&#105;&#112;&#64;&#x6d;&#x79;&#100;&#97;&#121;&#116;&#114;&#x69;&#112;&#46;&#99;&#111;&#x6d;">&#x64;&#97;&#x79;&#x74;&#x72;&#105;&#112;&#64;&#x6d;&#x79;&#100;&#97;&#121;&#116;&#114;&#x69;&#112;&#46;&#99;&#111;&#x6d;</a> or call <a href="tel:+442033181119">+44 20 3318 1119</a>.</p>
+            <p>To solve problems with bookings created via the API you can contact <a href="mailto:&#100;&#97;&#121;&#x74;&#x72;&#x69;&#x70;&#64;&#109;&#x79;&#x64;&#x61;&#121;&#x74;&#x72;&#x69;&#112;&#46;&#x63;&#111;&#109;">&#100;&#97;&#121;&#x74;&#x72;&#x69;&#x70;&#64;&#109;&#x79;&#x64;&#x61;&#121;&#x74;&#x72;&#x69;&#112;&#46;&#x63;&#111;&#109;</a> or call <a href="tel:+442033181119">+44 20 3318 1119</a>.</p>
             <h1 id="environments">Environments</h1>
             <p>Daytrip offers a sandbox environment where you can test your integration with the API without creating real bookings. All the code examples provided in this documentation are using this sandbox environment. Each environment requires a different API key. When your integration is ready and tested against the sandbox environment, you can request an API key for the production environment.</p>
             <h2 id="urls">URLs</h2>
@@ -797,6 +797,23 @@
                   </tr>
                </tbody>
             </table>
+            <h3 id="response-body-2">Response body</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Property</th>
+                     <th>Type</th>
+                     <th>Description</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>bookingId</td>
+                     <td>string</td>
+                     <td>Id of the created booking. Can be used to retrieve details about the booking or to cancel it.</td>
+                  </tr>
+               </tbody>
+            </table>
             <h3 id="error-status-codes-2">Error status codes</h3>
             <table>
                <thead>
@@ -964,7 +981,7 @@
             <h3 id="url-path-4">URL path</h3>
             <p><code>/partners/v3/trip/details/bookingId</code></p>
             <p>Replace <code>bookingId</code> with the id of the booking you want to retrieve details for.</p>
-            <h3 id="response-body-2">Response body</h3>
+            <h3 id="response-body-3">Response body</h3>
             <table>
                <thead>
                   <tr>

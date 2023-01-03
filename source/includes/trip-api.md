@@ -603,6 +603,12 @@ customerNote       | string                                      | Optional note
 flightNumber       | string                                      | Optional flight number in case this is an airport pick up.
 passengerDetails   | list of [PassengerDetail](#passengerdetail) | List of passengers that will go on this trip. The number of passengers must match the `passengersCount` query parameter from the Search endpoint. There must be at least one passenger of type "Lead" with contact details filled. For passenger of type "Child" you can request a child seat of proper type if this is a private trip.
 
+### Response body
+
+Property           | Type                                        | Description
+------------------ | ------------------------------------------- | -----------
+bookingId          | string                                      | Id of the created booking. Can be used to retrieve details about the booking or to cancel it.
+
 ### Error status codes
 
 Status code | Description
