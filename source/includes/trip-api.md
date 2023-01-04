@@ -855,7 +855,7 @@ weightInKilosTo         | integer                      | Maximum weight in kilog
 Property                | Type                         | Description
 ----------------------- | ---------------------------- | -----------
 id                      | string                       | Id of the stop. Used for adding stops to a trip option.
-price                   | string                       | Price of the stop. If the stop is in `includedStops` then this price is already part of `totalPrice` under `pricing` of the [TripOption](#tripoption).
+price                   | number                       | Price of the stop. If the stop is in `includedStops` then this price is already part of `totalPrice` under `pricing` of the [TripOption](#tripoption).
 name                    | string                       | Name of the stop.
 image                   | string                       | Link to the image of the stop.
 title                   | string                       | Title of the stop description.
