@@ -762,7 +762,7 @@ Replace `bookingId` with the id of the booking you want to retrieve details for.
 
 Property           | Type                                        | Description
 ------------------ | ------------------------------------------- | -----------
-status             | string                                      | Booking status. "Pending", "Confirmed" or "Cancelled".
+status             | string                                      | Booking status. "Confirmed" or "Cancelled".
 bookingDate        | string                                      | UTC timestamp of when this booking was created.
 passengersCount    | integer                                     | The count of passengers this booking is for.
 currency           | string                                      | Currency used for all prices in this response.
