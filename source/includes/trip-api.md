@@ -39,10 +39,10 @@ If you want to make pick up, drop off, passenger count or departure time changes
 
 ## Search endpoint
 
-> To search for a trip from Prague to Vienna for three passengers, use this call:
+> To search for a trip from Prague to Vienna for two passengers, use this call:
 
 ```bash
-curl "https://api.staging.mydaytrip.net/partners/v3/trip/search?originLongitude=14.2559&originLatitude=50.10&destinationLongitude=16.3738&destinationLatitude=48.2082&departureTime=1766227088&passengersCount=3"
+curl "https://api.staging.mydaytrip.net/partners/v3/trip/search?originLongitude=14.2559&originLatitude=50.10&destinationLongitude=16.3738&destinationLatitude=48.2082&departureTime=1766227088&passengersCount=2"
   -H "x-api-key: your-api-key"
 ```
 
@@ -60,7 +60,7 @@ curl "https://api.staging.mydaytrip.net/partners/v3/trip/search?originLongitude=
 {
    "searchId":"f0e34a1b-2b3d-4747-b426-292633b615b4",
    "expiresAt": "2022-12-04T18:00:00Z",
-   "passengersCount":3,
+   "passengersCount":2,
    "currency":"EUR",
    "options":[
       {
@@ -425,7 +425,7 @@ curl -d '{ "optionId": "1d32109f-c2e2-44fe-b2cf-461ef3730541", "selectedStops": 
 {
    "searchId":"f0e34a1b-2b3d-4747-b426-292633b615b4",
    "expiresAt": "2022-12-04T18:00:00Z",
-   "passengersCount":3,
+   "passengersCount":2,
    "currency":"EUR",
    "options":[
       {
@@ -601,7 +601,7 @@ pickupAddressNote  | string                                      | Optional note
 dropoffAddressNote | string                                      | Optional note for the driver with details about the drop off location.
 customerNote       | string                                      | Optional note for the driver not related to pick up or drop off.
 flightNumber       | string                                      | Optional flight number in case this is an airport pick up.
-passengerDetails   | list of [PassengerDetail](#passengerdetail) | List of passengers that will go on this trip. The number of passengers must match the `passengersCount` query parameter from the Search endpoint. There must be at least one passenger of type "Lead" with contact details filled. For passenger of type "Child" you can request a child seat of proper type if this is a private trip.
+passengerDetails   | list of [PassengerDetail](#passengerdetail) | List of passengers that will go on this trip. The number of passengers must match the `passengersCount` query parameter from the Search endpoint. There must be exactly one passenger of type "Lead" with contact details filled. For passenger of type "Child" you can request a child seat of proper type if this is a private trip.
 
 ### Response body
 
@@ -681,7 +681,7 @@ curl https://api.staging.mydaytrip.net/partners/v3/trip/details/bookingId -H "x-
 {
    "status": "Confirmed",
    "bookingDate": "2022-12-05T18:00:00Z",
-   "passengersCount": 3,
+   "passengersCount": 2,
    "currency": "EUR",
    "trip": {
       "type": "Private",   

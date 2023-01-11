@@ -41,7 +41,7 @@
             <h3 id="technical">Technical</h3>
             <p>If you have technical questions about the integration, contact us at TODO_EMAIL_SUPPORT.</p>
             <h3 id="customer-support-emergency">Customer support emergency</h3>
-            <p>To solve problems with bookings created via the API you can contact <a href="mailto:&#100;&#x61;&#121;&#x74;&#114;&#105;&#x70;&#x40;&#x6d;&#x79;&#x64;&#x61;&#121;&#x74;&#114;&#105;&#112;&#x2e;&#99;&#x6f;&#x6d;">&#100;&#x61;&#121;&#x74;&#114;&#105;&#x70;&#x40;&#x6d;&#x79;&#x64;&#x61;&#121;&#x74;&#114;&#105;&#112;&#x2e;&#99;&#x6f;&#x6d;</a> or call <a href="tel:+442033181119">+44 20 3318 1119</a>.</p>
+            <p>To solve problems with bookings created via the API you can contact <a href="mailto:&#x64;&#x61;&#121;&#x74;&#114;&#105;&#112;&#64;&#109;&#x79;&#x64;&#97;&#121;&#x74;&#114;&#x69;&#x70;&#x2e;&#99;&#111;&#109;">&#x64;&#x61;&#121;&#x74;&#114;&#105;&#112;&#64;&#109;&#x79;&#x64;&#97;&#121;&#x74;&#114;&#x69;&#x70;&#x2e;&#99;&#111;&#109;</a> or call <a href="tel:+442033181119">+44 20 3318 1119</a>.</p>
             <h1 id="environments">Environments</h1>
             <p>Daytrip offers a sandbox environment where you can test your integration with the API without creating real bookings. All the code examples provided in this documentation are using this sandbox environment. Each environment requires a different API key. When your integration is ready and tested against the sandbox environment, you can request an API key for the production environment.</p>
             <h2 id="urls">URLs</h2>
@@ -146,9 +146,9 @@
             <p>If you want to make pick up, drop off, passenger count or departure time changes to the booking you need to cancel it and create it again. For small adjustments like changing passenger phone number or email please contact our <a href="#contacts">support</a>.</p>
             <h2 id="search-endpoint">Search endpoint</h2>
             <blockquote>
-               <p>To search for a trip from Prague to Vienna for three passengers, use this call:</p>
+               <p>To search for a trip from Prague to Vienna for two passengers, use this call:</p>
             </blockquote>
-            <pre class="highlight bash"><code>curl <span class="hljs-string">&quot;https://api.staging.mydaytrip.net/partners/v3/trip/search?originLongitude=14.2559&amp;originLatitude=50.10&amp;destinationLongitude=16.3738&amp;destinationLatitude=48.2082&amp;departureTime=1766227088&amp;passengersCount=3&quot;</span>
+            <pre class="highlight bash"><code>curl <span class="hljs-string">&quot;https://api.staging.mydaytrip.net/partners/v3/trip/search?originLongitude=14.2559&amp;originLatitude=50.10&amp;destinationLongitude=16.3738&amp;destinationLatitude=48.2082&amp;departureTime=1766227088&amp;passengersCount=2&quot;</span>
   -H <span class="hljs-string">&quot;x-api-key: your-api-key&quot;</span></code></pre><pre class="highlight javascript"><code></code></pre><pre class="highlight python"><code></code></pre>
             <blockquote>
                <p>The above call returns JSON structured like this:</p>
@@ -156,7 +156,7 @@
             <pre class="highlight json"><code><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">&quot;searchId&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;f0e34a1b-2b3d-4747-b426-292633b615b4&quot;</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">&quot;expiresAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-12-04T18:00:00Z&quot;</span><span class="hljs-punctuation">,</span>
-   <span class="hljs-attr">&quot;passengersCount&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">&quot;passengersCount&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">&quot;currency&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;EUR&quot;</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">&quot;options&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span>
       <span class="hljs-punctuation">{</span>
@@ -578,7 +578,7 @@
             <pre class="highlight json"><code><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">&quot;searchId&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;f0e34a1b-2b3d-4747-b426-292633b615b4&quot;</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">&quot;expiresAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-12-04T18:00:00Z&quot;</span><span class="hljs-punctuation">,</span>
-   <span class="hljs-attr">&quot;passengersCount&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">&quot;passengersCount&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">&quot;currency&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;EUR&quot;</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">&quot;options&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span>
       <span class="hljs-punctuation">{</span>
@@ -793,7 +793,7 @@
                   <tr>
                      <td>passengerDetails</td>
                      <td>list of <a href="#passengerdetail">PassengerDetail</a></td>
-                     <td>List of passengers that will go on this trip. The number of passengers must match the <code>passengersCount</code> query parameter from the Search endpoint. There must be at least one passenger of type &quot;Lead&quot; with contact details filled. For passenger of type &quot;Child&quot; you can request a child seat of proper type if this is a private trip.</td>
+                     <td>List of passengers that will go on this trip. The number of passengers must match the <code>passengersCount</code> query parameter from the Search endpoint. There must be exactly one passenger of type &quot;Lead&quot; with contact details filled. For passenger of type &quot;Child&quot; you can request a child seat of proper type if this is a private trip.</td>
                   </tr>
                </tbody>
             </table>
@@ -910,7 +910,7 @@
             <pre class="highlight json"><code><span class="hljs-punctuation">{</span>
    <span class="hljs-attr">&quot;status&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Confirmed&quot;</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">&quot;bookingDate&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-12-05T18:00:00Z&quot;</span><span class="hljs-punctuation">,</span>
-   <span class="hljs-attr">&quot;passengersCount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3</span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">&quot;passengersCount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">&quot;currency&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;EUR&quot;</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">&quot;trip&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
       <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Private&quot;</span><span class="hljs-punctuation">,</span>   
