@@ -826,7 +826,7 @@ Property                | Type                         | Description
 type                    | string                       | Type of vehicle. "Sedan", "MPV", "Van", "Luxury" or "Shuttle"
 maxPassengers           | integer                      | Maximum number of passengers that can take a trip in this vehicle.
 description             | string                       | Description of the vehicle type, e.g. models that it is similar to.
-image                   | string                       | Link to an illustrative image of the vehicle type. Not an image of the exact vehicle.
+image                   | string                       | Link to an illustrative image of the vehicle type. Not an image of the exact vehicle that will be used for this trip.
 
 ## Luggage
 
