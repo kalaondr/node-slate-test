@@ -81,7 +81,7 @@ curl "https://api.staging.mydaytrip.net/partners/v3/trip/search?originLongitude=
             "totalPrice":260
          },
          "vehicle":{
-            "type":"sedan",
+            "type":"Sedan",
             "maxPassengers":3,
             "description":"Sedan comparable to a Volkswagen Passat, up to 3 passengers with luggage.",
             "image":"https://daytrip.imgix.net/vehicles/sedan.png"
@@ -183,7 +183,7 @@ curl "https://api.staging.mydaytrip.net/partners/v3/trip/search?originLongitude=
             "totalPrice":320
          },
          "vehicle":{
-            "type":"mpv",
+            "type":"MPV",
             "maxPassengers":4,
             "description":"Compact MPV comparable to a Volkswagen Touran, up to 4 passengers with luggage.",
             "image":"https://daytrip.imgix.net/vehicles/mpv.png"
@@ -288,7 +288,7 @@ curl "https://api.staging.mydaytrip.net/partners/v3/trip/search?originLongitude=
             "totalPrice":540
          },
          "vehicle":{
-            "type":"shuttle",
+            "type":"Shuttle",
             "maxPassengers":10,
             "description":"Shuttle comparable to a Mercedes-Benz Vito, up to 10 passengers with luggage.",
             "image":"https://daytrip.imgix.net/vehicles/shuttle.png"
@@ -328,7 +328,7 @@ curl "https://api.staging.mydaytrip.net/partners/v3/trip/search?originLongitude=
             "totalPrice":570
          },
          "vehicle":{
-            "type":"shuttle",
+            "type":"Shuttle",
             "maxPassengers":10,
             "description":"Shuttle comparable to a Mercedes-Benz Vito, up to 10 passengers with luggage.",
             "image":"https://daytrip.imgix.net/vehicles/shuttle.png"
@@ -446,7 +446,7 @@ curl -d '{ "optionId": "1d32109f-c2e2-44fe-b2cf-461ef3730541", "selectedStops": 
             "totalPrice":288
          },
          "vehicle":{
-            "type":"sedan",
+            "type":"Sedan",
             "maxPassengers":3,
             "description":"Sedan comparable to a Volkswagen Passat, up to 3 passengers with luggage.",
             "image":"https://daytrip.imgix.net/vehicles/sedan.png"
@@ -700,7 +700,7 @@ curl https://api.staging.mydaytrip.net/partners/v3/trip/details/bookingId -H "x-
          "totalPrice":288
       },
       "vehicle":{
-         "type":"sedan",
+         "type":"Sedan",
          "maxPassengers":3,
          "description":"Sedan comparable to a Volkswagen Passat, up to 3 passengers with luggage.",
          "image":"https://daytrip.imgix.net/vehicles/sedan.png"
@@ -823,7 +823,7 @@ pricePerPassenger       | number                       | Price per passenger. Op
 
 Property                | Type                         | Description
 ----------------------- | ---------------------------- | -----------
-type                    | string                       | Type of vehicle. "sedan", "mpv", "van", "luxury" or "shuttle"
+type                    | string                       | Type of vehicle. "Sedan", "MPV", "Van", "Luxury" or "Shuttle"
 maxPassengers           | integer                      | Maximum number of passengers that can take a trip in this vehicle.
 description             | string                       | Description of the vehicle type, e.g. models that it is similar to.
 image                   | string                       | Link to an illustrative image of the vehicle type. Not an image of the exact vehicle.
