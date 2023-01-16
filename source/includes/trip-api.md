@@ -296,8 +296,8 @@ curl "https://api.staging.mydaytrip.net/partners/v3/trip/search?originLongitude=
          "luggage":{
             "maxCarryonsPerPerson":1,
             "maxSuitcasesPerPerson":1,
-            "maxTotalCarryons":3,
-            "maxTotalSuitcases":3
+            "maxTotalCarryons":2,
+            "maxTotalSuitcases":2
          },
          "seatsAvailable":8,
          "availableChildSeatTypes":[
@@ -336,8 +336,8 @@ curl "https://api.staging.mydaytrip.net/partners/v3/trip/search?originLongitude=
          "luggage":{
             "maxCarryonsPerPerson":1,
             "maxSuitcasesPerPerson":1,
-            "maxTotalCarryons":3,
-            "maxTotalSuitcases":3
+            "maxTotalCarryons":2,
+            "maxTotalSuitcases":2
          },
          "seatsAvailable":5,
          "availableChildSeatTypes":[
