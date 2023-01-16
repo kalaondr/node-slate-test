@@ -285,7 +285,7 @@ curl "https://api.staging.mydaytrip.net/partners/v3/trip/search?originLongitude=
          },
          "pricing":{
             "pricePerPassenger":180,
-            "totalPrice":540
+            "totalPrice":360
          },
          "vehicle":{
             "type":"Shuttle",
@@ -325,7 +325,7 @@ curl "https://api.staging.mydaytrip.net/partners/v3/trip/search?originLongitude=
          },
          "pricing":{
             "pricePerPassenger":190,
-            "totalPrice":570
+            "totalPrice":380
          },
          "vehicle":{
             "type":"Shuttle",
