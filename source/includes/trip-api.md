@@ -636,7 +636,7 @@ curl -d '{ "bookingId": "cb102778-a3d7-426e-8d18-6bd6b296f283" }' -H "Content-Ty
 
 > The above call returns 204 No Content success HTTP status code.
 
-This endpoint is used to cancel a booked trip. Only trips that have departure in more than 24 hours can be cancelled currently - this is a subject to change at any time.
+This endpoint is used to cancel a booked trip. Only trips that have departure more than 24 hours in the future - this threshold is a subject to change.
 
 ### URL path
 

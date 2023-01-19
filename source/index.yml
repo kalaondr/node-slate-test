@@ -12,6 +12,7 @@ includes:
    - errors
    - debugging
    - trip-api
+   - faq
 
 search: true
 
