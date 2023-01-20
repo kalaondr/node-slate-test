@@ -399,7 +399,7 @@ options         | list of [TripOption](#tripoption) | List of options for this t
 
 Status code | Description
 ----------- | -----------
-400         | Invalid request - missing mandatory query parameters or wrong types.
+400         | Invalid request - missing mandatory query parameter, parameter has wrong type or wrong passenger count.
 401         | API key missing or invalid.
 404         | No trip options found for given request.
 
@@ -557,7 +557,7 @@ Same format as for the [Search endpoint](#search)
 
 Status code | Description
 ----------- | -----------
-400         | Invalid request - missing mandatory properties, wrong types or not a valid json.
+400         | Invalid request - missing mandatory property, property has a wrong type or not a valid json.
 401         | API key missing or invalid.
 403         | Forbidden request - trying to customize a trip option owned by someone else.
 404         | Trip option not found or expired. Stop not found.
@@ -613,7 +613,7 @@ bookingId          | string                                      | Id of the cre
 
 Status code | Description
 ----------- | -----------
-400         | Invalid request - missing mandatory properties, mismatch in passenger count, missing lead passenger, wrong types or not a valid json.
+400         | Invalid request - missing mandatory property, property has wrong type, mismatch in passenger count, missing lead passenger, multiple lead passengers or not a valid json.
 401         | API key missing or invalid.
 403         | Forbidden request - trying to book a trip option owned by someone else.
 404         | Trip option not found or expired.
