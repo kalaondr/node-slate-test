@@ -368,7 +368,7 @@ curl "https://api.staging.mydaytrip.net/partners/v3/trip/search?originLongitude=
 }
 ```
 
-This endpoint returns all trip options for given origin, destination, departure time and passenger count. Origin and destination are passed as latitude and longitude coordinates. The unit used is degree with decimal places, for example `39.753657, -117.610215`. Departure time is passed as a UNIX epoch timestamp in seconds, like `1679463169`.
+This endpoint returns all trip options for given origin, destination, departure time and passenger count (must be between 1 and 10). Origin and destination are passed as latitude and longitude coordinates. The unit used is degree with decimal places, for example `39.753657, -117.610215`. Departure time is passed as a UNIX epoch timestamp in seconds, like `1679463169`.
 
 ### URL path
 
@@ -379,11 +379,11 @@ This endpoint returns all trip options for given origin, destination, departure 
 Parameter           | Type    | Description
 ------------------- | ------- | -----------
 originLatitude      | number  | Origin latitude in degrees.
-originLongitude     | number  | Origin longitued in degrees.
+originLongitude     | number  | Origin longitude in degrees.
 destinationLatitude | number  | Destination latitude in degrees.
-originLongitude     | number  | Destination longitued in degrees.
+originLongitude     | number  | Destination longitude in degrees.
 departureTime       | integer | Departure time as a UNIX epoch timestamp in seconds.
-passengersCount     | integer | Count of passengers to transport.
+passengersCount     | integer | Count of passengers to transport. Must be between 1 and 10.
 
 ### Response body
 
