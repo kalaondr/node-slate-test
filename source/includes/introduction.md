@@ -8,11 +8,7 @@ The API can be used to search for trip options, customize a trip with stops, boo
 
 ### Onboarding
 
-If you want to integrate with our API, contact us at TODO_EMAIL_ONBOARDING to get a partner account and an API key. 
-
-### Technical
-
-If you have technical questions about the integration, contact us at TODO_EMAIL_SUPPORT.
+If you want to integrate with our API, contact us at <partners@mydaytrip.com> to get a partner account and an API key. 
 
 ### Customer support emergency
 
